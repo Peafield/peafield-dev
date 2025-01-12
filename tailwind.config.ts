@@ -9,6 +9,14 @@ export default {
         openSans: "var(--font-open-sans)",
         inter: "var(--font-inter)",
       },
+      colors: {
+        background: {
+          light: "#edf6f9",
+          dark: "#333333",
+        },
+        textLight: "#333333",
+        textDark: "#00FF41",
+      },
     },
   },
   plugins: [],
