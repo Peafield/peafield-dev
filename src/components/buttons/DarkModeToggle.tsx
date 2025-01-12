@@ -23,7 +23,7 @@ const DarkModeToggle = () => {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="bg-gray-800 dark:bg-gray-200 text-black dark:text-textDark"
+      className="text-black dark:text-white"
       onClick={handleToggle}
     >
       <AnimatePresence mode="wait" initial={false}>

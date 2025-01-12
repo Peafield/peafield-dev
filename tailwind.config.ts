@@ -2,7 +2,10 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: "class",
-  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -10,10 +13,6 @@ export default {
         inter: "var(--font-inter)",
       },
       colors: {
-        background: {
-          light: "#edf6f9",
-          dark: "#333333",
-        },
         textLight: "#333333",
         textDark: "#00FF41",
       },
