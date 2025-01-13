@@ -2,10 +2,14 @@
 
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
 import { AnimatePresence, motion } from "framer-motion";
-import { SquareMenu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { RiBlueskyLine, RiGithubFill } from "react-icons/ri";
+import {
+  RiBlueskyLine,
+  RiGithubFill,
+  RiCloseFill,
+  RiMenuFill,
+} from "react-icons/ri";
 import DarkModeToggle from "./buttons/DarkModeToggle";
 const Navbar = () => {
   const [, setMounted] = useState(false);
@@ -72,7 +76,7 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X />
+                  <RiCloseFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -82,7 +86,7 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <SquareMenu />
+                  <RiMenuFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
                 </motion.div>
               )}
             </AnimatePresence>
