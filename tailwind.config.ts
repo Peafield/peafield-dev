@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: "class",
@@ -12,11 +13,7 @@ export default {
         openSans: "var(--font-open-sans)",
         inter: "var(--font-inter)",
       },
-      colors: {
-        textLight: "#333333",
-        textDark: "#00FF41",
-      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config;

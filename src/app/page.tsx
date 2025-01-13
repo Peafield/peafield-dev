@@ -1,6 +1,12 @@
-import DarkModeToggle from "@/components/buttons/DarkModeToggle";
-import Navbar from "@/components/Navbar";
+import Container from "@/components/Container";
+import Intro from "@/components/Intro";
 
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <Container>
+        <Intro />
+      </Container>
+    </main>
+  );
 }

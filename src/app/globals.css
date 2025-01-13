@@ -4,7 +4,11 @@
 
 @layer base {
   body {
-      @apply dark:bg-gray-900 
-          bg-white;
+      @apply dark:bg-black 
+          bg-white
     }
+  
+  p {
+    @apply font-inter
+  }
   }
