@@ -105,12 +105,12 @@ const Intro = () => {
           </p>
         </div>
         <p>
-          I’ve come to coding late in life, but it’s good to finally know what I
-          wanted to do all along. I’m currently a full-stack developer at{" "}
+          I discovered coding later in life and found what I've always wanted to
+          do. I'm currently a full-stack developer at{" "}
           <Link href="https://yarn.family" target="_blank">
             yarn
           </Link>
-          , an AI story creation tool for kids, where I focus on creating the
+          —an AI story composition tool for kids—where I focus on crafting the
           front-end with Next.js.
         </p>
         <p>
@@ -119,7 +119,14 @@ const Intro = () => {
         </p>
         <p>
           Before all this, I did a bit of acting, studied Japanese for many
-          years, then creative writing for a few more. I co-created a{" "}
+          years, then{" "}
+          <Link
+            href="https://www.spreadtheword.org.uk/announcing-the-london-writers-awards-winners-2019/"
+            target="_blank"
+          >
+            creative writing
+          </Link>{" "}
+          for a few more. I co-created a literary{" "}
           <Link
             href="https://bricklanebookshop.org/blb-podcast-all-episodes/"
             target="_blank"
