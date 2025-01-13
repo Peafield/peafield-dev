@@ -1,16 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
+import { AnimatePresence, motion } from "framer-motion";
+import { SquareMenu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import DarkModeToggle from "./buttons/DarkModeToggle";
 import { RiBlueskyLine, RiGithubFill } from "react-icons/ri";
-import { SquareMenu } from "lucide-react";
-import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
+import DarkModeToggle from "./buttons/DarkModeToggle";
 const Navbar = () => {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -65,7 +63,29 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="flex items-center justify-center sm:hidden"
           >
-            <SquareMenu />
+            <AnimatePresence mode="wait" initial={false}>
+              {isMenuOpen ? (
+                <motion.div
+                  key="X"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="SquareMenu"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <SquareMenu />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
 
           {/* Desktop Menu */}
@@ -85,26 +105,45 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div
-              ref={menuRef}
-              className="absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg sm:hidden"
-            >
-              <ul className="flex flex-col p-4">
-                {navLinks.map((link) => (
-                  <li key={link.id} className="py-2">
-                    <Link
-                      href={link.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="font-openSans font-medium text-black dark:text-white hover:text-gray-700 hover:dark:text-gray-300"
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                ref={menuRef}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg sm:hidden"
+              >
+                <motion.ul
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="flex flex-col p-4"
+                >
+                  {navLinks.map((link, i) => (
+                    <motion.li
+                      key={link.id}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="py-2"
                     >
-                      {link.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+                      <Link
+                        href={link.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="font-openSans font-medium text-black dark:text-white hover:text-gray-700 hover:dark:text-gray-300"
+                      >
+                        {link.text}
+                      </Link>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Socials and utils */}
           <div className="flex gap-x-4 items-center justify-center">
