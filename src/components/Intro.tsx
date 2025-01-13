@@ -10,13 +10,41 @@ import {
   RiPixelfedFill,
 } from "react-icons/ri";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 const Intro = () => {
   return (
-    <>
-      <div className="prose dark:prose-invert m-auto p-8 md:py-8 md:px-0">
+    <motion.div variants={containerVariants} initial="hidden" animate="visible">
+      <motion.div
+        variants={itemVariants}
+        className="prose dark:prose-invert m-auto p-8 md:py-8 md:px-0"
+      >
         <h1 className="font-openSans font-medium">Peter J Coles</h1>
-      </div>
-      <article className="prose dark:prose-invert m-auto p-8 md:py-8 md:px-0">
+      </motion.div>
+      <motion.article
+        variants={itemVariants}
+        className="prose dark:prose-invert m-auto p-8 md:py-8 md:px-0"
+      >
         <p>Hello, I’m Peter J Coles, a developer and creative type.</p>
         <div className="prose dark:prose-invert flex items-center">
           <motion.div
@@ -143,8 +171,8 @@ const Intro = () => {
             <span className="ml-2">Pixelfed</span>
           </Link>
         </div>
-      </article>
-    </>
+      </motion.article>
+    </motion.div>
   );
 };
 
