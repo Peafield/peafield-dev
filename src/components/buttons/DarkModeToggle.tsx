@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ const DarkModeToggle = () => {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="bg-gray-800 dark:bg-gray-200 text-white dark:text-black p-2 rounded-full"
+      className="text-black dark:text-white"
       onClick={handleToggle}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -35,7 +35,7 @@ const DarkModeToggle = () => {
             exit={{ opacity: 0, rotate: 45 }}
             transition={{ duration: 0.2 }}
           >
-            <Sun />
+            <RiSunLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
           </motion.div>
         ) : (
           <motion.div
@@ -45,7 +45,7 @@ const DarkModeToggle = () => {
             exit={{ opacity: 0, rotate: -45 }}
             transition={{ duration: 0.2 }}
           >
-            <Moon />
+            <RiMoonLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
           </motion.div>
         )}
       </AnimatePresence>

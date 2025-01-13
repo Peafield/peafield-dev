@@ -1,10 +1,12 @@
-import DarkModeToggle from "@/components/buttons/DarkModeToggle";
+import Container from "@/components/Container";
+import Intro from "@/components/Intro";
 
 export default function Home() {
   return (
     <main>
-      <DarkModeToggle />
-      <h1 className="font-openSans">Coming Soon!</h1>
+      <Container>
+        <Intro />
+      </Container>
     </main>
   );
 }
