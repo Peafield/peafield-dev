@@ -101,16 +101,16 @@ const Intro = () => {
             💻️
           </motion.div>
           <p className="ml-2">
-            Building things with Typescript, React, Python, Golang
+            Making things with Typescript, React, Python, Golang
           </p>
         </div>
         <p>
-          I discovered coding later in life and found what I've always wanted to
-          do. I'm currently a full-stack developer at{" "}
+          I discovered coding later in life and found that it was what I've
+          always wanted to do. I'm currently a full-stack developer at{" "}
           <Link href="https://yarn.family" target="_blank">
             yarn
           </Link>
-          —an AI story composition tool for kids—where I focus on crafting the
+          —an AI story creation tool for kids—where I focus on writing the
           front-end with Next.js.
         </p>
         <p>
