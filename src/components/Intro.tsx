@@ -140,7 +140,7 @@ const Intro = () => {
           .{" "}
         </p>
         <p>
-          This space will a place for me to test ideas and share my thoughts.
+          This space will be a place for me to test ideas and share my thoughts.
         </p>
         <Divider />
         <p>You can find me on </p>
