@@ -1,5 +1,5 @@
-import { contactFormSchema } from "@/app/contact/actions";
 import clientPromise from "@/lib/mongodb";
+import { contactFormSchema } from "@/types/contact";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
