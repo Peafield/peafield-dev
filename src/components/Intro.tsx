@@ -105,8 +105,7 @@ const Intro = () => {
           </p>
         </div>
         <p>
-          I discovered coding later in life and found that it was what I've
-          always wanted to do. I'm currently a full-stack developer at{" "}
+          I'm currently a full-stack developer at{" "}
           <Link href="https://yarn.family" target="_blank">
             yarn
           </Link>
@@ -114,8 +113,8 @@ const Intro = () => {
           front-end with Next.js.
         </p>
         <p>
-          In my spare time, I’m busy building Book Kin—a platform to share your
-          home library with friends and family.
+          I’m busy building Book Kin—a platform to share your home library with
+          friends and family.
         </p>
         <p>
           Before all this, I did a bit of acting, studied Japanese for many
@@ -140,7 +139,8 @@ const Intro = () => {
           .{" "}
         </p>
         <p>
-          This space will be a place for me to test ideas and share my thoughts.
+          This space will be a place for me to test ideas and{" "}
+          <Link href="/notes">share my thoughts</Link>.
         </p>
         <Divider />
         <p>You can find me on </p>
