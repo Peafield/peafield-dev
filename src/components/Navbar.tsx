@@ -24,7 +24,7 @@ const Navbar = () => {
   const logoText = "Peafield.dev".split("");
 
   const navLinks = [
-    { id: 1, text: "Blog", path: "/blog" },
+    { id: 1, text: "Notes", path: "/notes" },
     { id: 2, text: "Portfolio", path: "/portfolio" },
     { id: 3, text: "Contact", path: "/contact" },
   ];
