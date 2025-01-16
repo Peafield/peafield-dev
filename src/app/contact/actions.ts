@@ -1,18 +1,26 @@
 "use server";
 
-import { z } from "zod";
+import { contactFormSchema } from "@/types/contact";
 
-const contactFormSchema = z.object({
-  name: z.string().min(2).max(100),
-  email: z.string().email(),
-  message: z.string().min(10).max(5000),
-});
+export type SubmitContactFormState = {
+  name?: string;
+  email?: string;
+  message?: string;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    message?: string[];
+  };
+};
 
-export async function submitContactForm(formData: FormData) {
+export async function submitContactForm(
+  _prevState: SubmitContactFormState,
+  formData: FormData
+) {
   const formValues = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    message: formData.get("message") as string,
   };
 
   const { success, error, data } = contactFormSchema.safeParse(formValues);
@@ -23,17 +31,20 @@ export async function submitContactForm(formData: FormData) {
       values: formValues,
     };
   }
-  const response = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/contact`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to submit form");
   }
 
-  return response.json();
+  return { success: true };
 }

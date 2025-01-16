@@ -1,7 +1,7 @@
 import TempPage from "@/components/TempPage";
 
-const BlogPage = () => {
+const NotesPage = () => {
   return <TempPage />;
 };
 
-export default BlogPage;
+export default NotesPage;

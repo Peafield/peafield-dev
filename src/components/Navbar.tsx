@@ -24,7 +24,7 @@ const Navbar = () => {
   const logoText = "Peafield.dev".split("");
 
   const navLinks = [
-    { id: 1, text: "Blog", path: "/blog" },
+    { id: 1, text: "Notes", path: "/notes" },
     { id: 2, text: "Portfolio", path: "/portfolio" },
     { id: 3, text: "Contact", path: "/contact" },
   ];
@@ -118,7 +118,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="absolute top-16 left-0 right-0 bg-white dark:bg-black shadow-lg sm:hidden"
+                  className="absolute z-10 top-16 left-0 right-0 bg-white dark:bg-black shadow-lg sm:hidden"
                 >
                   <motion.ul
                     initial={{ opacity: 0 }}
