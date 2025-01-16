@@ -1,3 +1,5 @@
+import { easeInOut } from "framer-motion";
+
 export const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -17,5 +19,33 @@ export const itemVariants = {
     transition: {
       duration: 0.5,
     },
+  },
+};
+
+export const buttonVariants = {
+  initial: { scale: 1 },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#9556ba",
+    transition: { stiffness: 400, damping: 10, easeInOut },
+  },
+  tap: { scale: 0.95 },
+};
+
+export const errorVariants = {
+  initial: {
+    opacity: 0,
+    y: -10,
+    height: 0,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    height: "auto",
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    height: 0,
   },
 };

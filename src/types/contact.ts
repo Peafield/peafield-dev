@@ -9,7 +9,9 @@ export const contactFormSchema = z.object({
     .max(100, {
       message: "That's a long name, maybe remove a few characters?",
     }),
-  email: z.string().email(),
+  email: z.string().email({
+    message: "That doesn't look like a valid email address. Check again?",
+  }),
   message: z
     .string()
     .min(10, {
