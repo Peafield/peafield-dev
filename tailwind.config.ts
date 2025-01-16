@@ -13,6 +13,11 @@ export default {
         openSans: "var(--font-open-sans)",
         inter: "var(--font-inter)",
       },
+      colors: {
+        terminal: "#7bba56",
+        hoverColor: "#9556ba",
+        error: "#BA567B",
+      },
     },
   },
   plugins: [typography],
