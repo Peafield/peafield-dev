@@ -11,7 +11,7 @@ const CarouselSlide = ({ image }: CarouselSlideProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="relative w-[100vw] aspect-video">
+      <div className="relative w-screen aspect-video">
         <Image
           src={image}
           alt=""
