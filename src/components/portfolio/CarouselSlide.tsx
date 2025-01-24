@@ -3,28 +3,25 @@ import Image from "next/image";
 
 type CarouselSlideProps = {
   image: string;
-  imgIndex: number;
-  currentIndex: number;
 };
-
-const CarouselSlide = ({
-  image,
-  imgIndex,
-  currentIndex,
-}: CarouselSlideProps) => {
+const CarouselSlide = ({ image }: CarouselSlideProps) => {
   return (
     <motion.div
-      className="aspect-video w-[80%] lg:w-full shrink-0 rounded-xl object-cover"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      animate={{
-        scale: imgIndex === currentIndex ? 0.95 : 0.85,
-        opacity: imgIndex === currentIndex ? 1 : 0.5,
-      }}
-    />
+      initial={{ opacity: 0, y: 150 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div className="relative w-[100vw] aspect-video">
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          className="object-cover rounded-lg"
+        />
+      </div>
+    </motion.div>
   );
 };
+
 export default CarouselSlide;

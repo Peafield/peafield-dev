@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* Home */}
           <div>
             <Link href="/">
-              <motion.span className="font-openSans font-medium">
+              <motion.span className="font-openSans font-medium text-xl">
                 {logoText.map((letter, index) => (
                   <motion.span
                     key={index}
@@ -100,7 +100,7 @@ const Navbar = () => {
                   <li key={link.id}>
                     <Link
                       href={link.path}
-                      className="font-openSans font-medium hover:text-gray-700 hover:dark:text-gray-300"
+                      className="font-openSans font-medium text-xl hover:text-gray-700 hover:dark:text-gray-300"
                     >
                       {link.text}
                     </Link>
@@ -139,7 +139,7 @@ const Navbar = () => {
                         <Link
                           href={link.path}
                           onClick={() => setIsMenuOpen(false)}
-                          className="font-openSans font-medium hover:text-gray-700 hover:dark:text-gray-300"
+                          className="font-openSans font-medium text-xl hover:text-gray-700 hover:dark:text-gray-300"
                           aria-disabled={true}
                         >
                           {link.text}

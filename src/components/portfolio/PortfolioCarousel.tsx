@@ -1,39 +1,65 @@
+"use client";
+
 import { itemVariants } from "@/constants/constants";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import CarouselSlide from "./CarouselSlide";
 
 type PortfolioCarouselProps = {
   images: string[];
 };
 
 const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: targetRef });
-  // small screen: 20% to -80% large screen "20%" to "-55%" maybe can you var() and set in tailwind?
-  const x = useTransform(scrollYProgress, [0, 1], ["20%", "-80%"]);
+  const outerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: outerRef });
+  const [containerHeight, setContainerHeight] = useState<number>(0);
+  const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
+
+  useEffect(() => {
+    if (outerRef.current && gridRef.current) {
+      const containerWidth = outerRef.current.offsetWidth;
+      const contentWidth = gridRef.current.scrollWidth;
+      const totalShift = contentWidth - containerWidth;
+
+      if (totalShift <= 0) {
+        setContainerHeight(window.innerHeight);
+        setMaxScrollDistance(0);
+        return;
+      }
+
+      const newContainerHeight = window.innerHeight + totalShift;
+      setContainerHeight(newContainerHeight);
+      setMaxScrollDistance(totalShift);
+    }
+  }, [images]);
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
   return (
     // Carousel
-    <div className="h-[1000vh] lg:h-[500vh]">
+    <div
+      style={{ height: containerHeight ? `${containerHeight}px` : "100vh" }}
+      ref={outerRef}
+    >
       {/* Carousel Container */}
       <div className="h-dvh overflow-hidden sticky top-0 flex items-center justify-start">
         {/* Slides */}
         <motion.div
+          ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-col auto-cols-auto gap-[3vw] py-8"
+          className="grid grid-flow-col auto-cols-auto gap-[1vw] py-8"
           style={{ x }}
         >
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 150 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <div className="w-[100vw] lg:w-[50vw] aspect-video">
-                <img src={image} alt="" className="size-full object-cover" />
-              </div>
-            </motion.div>
-          ))}
+          <AnimatePresence>
+            {images.map((image, index) => (
+              <CarouselSlide key={index} image={image} />
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </div>

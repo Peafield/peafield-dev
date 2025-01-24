@@ -17,13 +17,15 @@ const Portfolio = () => {
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <PortfolioSection>
         <PortfolioContent>
-          <h1 className="text-4xl font-bold">Yarn</h1>
+          <h1 className="text-4xl text-center font-bold">Yarn</h1>
         </PortfolioContent>
       </PortfolioSection>
       <PortfolioCarousel images={images} />
       <PortfolioSection>
         <PortfolioContent>
-          <h1 className="text-4xl font-bold">Wendi's Worminghall Whimsies</h1>
+          <h1 className="text-4xl text-center font-bold">
+            Wendi's Worminghall Whimsies
+          </h1>
         </PortfolioContent>
       </PortfolioSection>
       {/* <PortfolioCarousel /> */}
