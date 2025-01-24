@@ -33,7 +33,7 @@ const Carousel = ({ images }: CarouselProps) => {
 
   // TODO: Redo animations with framer-motion
   return (
-    <div className="relative w-full h-96 mx-auto overflow-hidden">
+    <div className="relative w-1/2 h-96 mx-auto overflow-hidden rounded-lg shadow-lg">
       {/* Container */}
       <div
         ref={carouselRef}
