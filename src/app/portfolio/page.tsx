@@ -1,5 +1,5 @@
 import Container from "@/components/Container";
-import Portfolio from "@/components/Portfolio";
+import Portfolio from "@/components/portfolio/Portfolio";
 
 const PortfolioPage = () => {
   return <Portfolio />;
