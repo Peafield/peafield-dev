@@ -9,7 +9,7 @@ type PortfolioCarouselProps = {
 const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  // small screen: 20% to -80% large screen "20%" to "-55%"
+  // small screen: 20% to -80% large screen "20%" to "-55%" maybe can you var() and set in tailwind?
   const x = useTransform(scrollYProgress, [0, 1], ["20%", "-80%"]);
   return (
     // Carousel
