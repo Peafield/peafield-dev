@@ -19,10 +19,7 @@ const Portfolio = () => {
       >
         <h1 className="font-openSans font-medium">Portfolio</h1>
       </motion.div>
-      <motion.div
-        variants={itemVariants}
-        className="m-auto p-8 md:py-8 md:px-0"
-      >
+      <motion.div variants={itemVariants}>
         <Carousel images={images} />
       </motion.div>
     </motion.div>
