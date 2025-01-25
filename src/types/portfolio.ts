@@ -5,6 +5,7 @@ export const PortfolioItemsSchema = z.array(
     name: z.string(),
     projectOverview: z.string(),
     technologies: z.array(z.string()),
+    roles: z.string(),
     images: z.array(z.string()),
     links: z.array(z.string()),
   })
