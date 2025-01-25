@@ -10,7 +10,7 @@ const PortfolioSection = ({ children }: PortfolioSectionProps) => {
   return (
     <motion.div
       variants={itemVariants}
-      className="flex flex-col items-center justify-center h-screen"
+      className="relative flex flex-col items-center h-screen p-4"
     >
       {children}
     </motion.div>

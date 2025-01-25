@@ -7,7 +7,10 @@ type PortfolioContentProps = {
 };
 const PortfolioContent = ({ children }: PortfolioContentProps) => {
   return (
-    <motion.div variants={itemVariants} className="flex flex-col gap-y-4">
+    <motion.div
+      variants={itemVariants}
+      className="absolute sm:top-[16%] flex flex-col gap-y-4 p-4"
+    >
       {children}
     </motion.div>
   );
