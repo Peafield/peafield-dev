@@ -27,15 +27,17 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       const contentWidth = gridRef.current.scrollWidth;
       const totalShift = contentWidth - containerWidth;
 
-      if (totalShift <= 0) {
-        setContainerHeight(window.innerHeight);
-        setMaxScrollDistance(0);
-        return;
-      }
+      // Always use window.innerHeight as base
+      const baseHeight = window.innerHeight;
 
-      const newContainerHeight = window.innerHeight + totalShift;
-      setContainerHeight(newContainerHeight);
-      setMaxScrollDistance(totalShift);
+      // Only add the horizontal overflow that's visible in viewport
+      const scrollableOverflow = Math.min(totalShift, containerWidth);
+
+      // Cap container height at 200vh max
+      const newContainerHeight = baseHeight + Math.max(0, scrollableOverflow);
+      setContainerHeight(Math.min(newContainerHeight, baseHeight * 2));
+
+      setMaxScrollDistance(Math.max(0, totalShift));
     }
   }, [images]);
 
@@ -52,7 +54,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
         <motion.div
           ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-auto gap-[2vw] py-8"
+          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100vh-160px)*1.5))] gap-[2vw]"
           style={{ x }}
         >
           <AnimatePresence>
