@@ -26,17 +26,10 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       const containerWidth = outerRef.current.offsetWidth;
       const contentWidth = gridRef.current.scrollWidth;
       const totalShift = contentWidth - containerWidth;
-
-      // Always use window.innerHeight as base
       const baseHeight = window.innerHeight;
-
-      // Only add the horizontal overflow that's visible in viewport
       const scrollableOverflow = Math.min(totalShift, containerWidth);
-
-      // Cap container height at 200vh max
       const newContainerHeight = baseHeight + Math.max(0, scrollableOverflow);
       setContainerHeight(Math.min(newContainerHeight, baseHeight * 2));
-
       setMaxScrollDistance(Math.max(0, totalShift));
     }
   }, [images]);
@@ -51,6 +44,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       {/* Carousel Container */}
       <div className="h-dvh overflow-hidden sticky top-0 flex items-center justify-start">
         {/* Slides */}
+        {/* TODO: figure out how to get the mobile view better. col and images popping in from the side */}
         <motion.div
           ref={gridRef}
           variants={itemVariants}
