@@ -59,7 +59,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
         <motion.div
           ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100dvh-160px)*1.5))] gap-[2vw]"
+          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100dvh-160px)*1.5))] gap-[3vw]"
           style={!isMobile ? { x } : undefined}
         >
           <AnimatePresence>

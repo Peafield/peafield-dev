@@ -22,7 +22,7 @@ export const portfolioItems: PortfolioItem = [
       <>
         I led the full-stack overhaul of yarn, migrating from legacy HTML/CSS/JS
         to a modern{" "}
-        <span className="font-semibold text-purple-300">Next.js</span>{" "}
+        <span className="font-semibold text-purple-400">Next.js</span>{" "}
         application with{" "}
         <span className="font-semibold text-purple-300">SSR</span> for{" "}
         <span className="font-semibold text-purple-300">SEO</span> optimization
@@ -64,11 +64,12 @@ export const portfolioItems: PortfolioItem = [
       <>
         I built a poety website for a client using{" "}
         <span className="font-semibold text-purple-300">Next.js</span>. The site
-        features a custom CMS for the author to manage their content. I
-        implemented server-side rendering for SEO optimization and responsive
-        design for mobile users. The site is hosted on a VPS and uses a{" "}
-        <span className="font-semibold text-purple-300">MongoDB</span> database
-        to store the poetry content.
+        features a custom CMS utlising TipTap for the author to manage their
+        content. I implemented server-side rendering for SEO optimization and
+        responsive design for mobile users. The site is self-hosted on a VPS and
+        uses a <span className="font-semibold text-purple-300">MongoDB</span>{" "}
+        database to store the poetry data, with the images hosted on Cloudflare
+        R2 Object Storage.
       </>
     ),
     images: [

@@ -20,7 +20,7 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
         )}
       </Link>
       <div className="prose dark:prose-invert flex items-center justify-start gap-4">
-        <p className="text-start font-light pt-1 text-lime-700 dark:text-lime-300">
+        <p className="text-start dark:font-light pt-1 text-lime-700 dark:text-lime-300">
           <span className="text-black dark:text-white font-medium">
             Made with:
           </span>{" "}
