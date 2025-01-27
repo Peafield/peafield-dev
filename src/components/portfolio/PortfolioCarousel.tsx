@@ -20,9 +20,17 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   const { isMobile } = useUiStore();
   const outerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: outerRef });
+  const { scrollYProgress } = useScroll({
+    target: outerRef,
+    layoutEffect: false,
+  });
   const [containerHeight, setContainerHeight] = useState<number>(0);
   const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (outerRef.current && gridRef.current) {
@@ -38,6 +46,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   }, [images]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
+  if (!isMounted) return null;
   return (
     // Carousel
     <div
@@ -45,13 +54,12 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       ref={outerRef}
     >
       {/* Carousel Container */}
-      <div className="h-dvh overflow-hidden sticky top-0 flex items-center justify-start">
+      <div className="h-dvh overflow-hidden md:sticky md:top-0 flex items-center justify-start">
         {/* Slides */}
-        {/* TODO: figure out how to get the mobile view better. col and images popping in from the side */}
         <motion.div
           ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-[100vw] md:grid-flow-col md:auto-cols-[min(100vw,calc((100vh-160px)*1.5))] gap-[2vw]"
+          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100vh-160px)*1.5))] gap-[2vw]"
           style={isMobile ? {} : { x }}
         >
           <AnimatePresence>

@@ -1,7 +1,7 @@
 import { PortfolioItem } from "@/types/portfolio";
 import Link from "next/link";
-import YarnLogo from "../svgs/yarn/YarnLogo";
 import YarnHeader from "./YarnHeader";
+import { RiExternalLinkLine, RiGithubFill } from "react-icons/ri";
 
 type PortfolioContentItemProps = {
   item: PortfolioItem[number];
@@ -10,7 +10,7 @@ type PortfolioContentItemProps = {
 const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
   return (
     <>
-      <Link href={item.href} target="_blank">
+      <Link href={item.links.other || ""} target="_blank">
         {item.name === "Yarn" ? (
           <YarnHeader />
         ) : (
@@ -36,6 +36,20 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
           {item.roles}
         </p>
       </div>
+      <Link href={item.links.live} target="_blank">
+        <p className="text-start font-light text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+          <RiExternalLinkLine />
+          Live
+        </p>
+      </Link>
+      {item.links.repo && (
+        <Link href={item.links.repo} target="_blank">
+          <p className="text-start font-light text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+            <RiGithubFill />
+            Repo
+          </p>
+        </Link>
+      )}
     </>
   );
 };

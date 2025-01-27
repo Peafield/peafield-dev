@@ -11,7 +11,7 @@ const CarouselSlide = ({ image }: CarouselSlideProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="relative w-full h-full p-8 flex items-center justify-center">
+      <div className="relative w-dvw xl:w-full h-full xl:p-8 flex items-center justify-center">
         <div className="relative w-full aspect-[3/2] max-h-[calc(100vh-160px)]">
           <Image
             src={image}
