@@ -22,7 +22,6 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: outerRef,
-    layoutEffect: false,
   });
   const [containerHeight, setContainerHeight] = useState<number>(0);
   const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
@@ -50,16 +49,16 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   return (
     // Carousel
     <div
-      style={{ height: containerHeight ? `${containerHeight}px` : "100vh" }}
+      style={{ height: containerHeight ? `${containerHeight}px` : "100svh" }}
       ref={outerRef}
     >
       {/* Carousel Container */}
-      <div className="h-dvh overflow-hidden md:sticky md:top-0 flex items-center justify-start">
+      <div className="h-svh overflow-hidden md:sticky md:top-0 flex items-center justify-center xl:justify-start">
         {/* Slides */}
         <motion.div
           ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100vh-160px)*1.5))] gap-[2vw]"
+          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100svh-160px)*1.5))] gap-[2vw]"
           style={isMobile ? {} : { x }}
         >
           <AnimatePresence>

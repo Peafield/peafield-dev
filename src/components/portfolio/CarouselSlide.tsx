@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -12,12 +14,11 @@ const CarouselSlide = ({ image }: CarouselSlideProps) => {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="relative w-dvw xl:w-full h-full xl:p-8 flex items-center justify-center">
-        <div className="relative w-full aspect-[3/2] max-h-[calc(100vh-160px)]">
+        <div className="relative w-full aspect-[3/2] max-h-[calc(100svh-160px)]">
           <Image
             src={image}
             alt=""
             fill
-            priority
             className="object-contain rounded-lg"
           />
         </div>

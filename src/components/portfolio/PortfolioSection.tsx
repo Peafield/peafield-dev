@@ -1,3 +1,5 @@
+"use client";
+
 import { itemVariants } from "@/constants/constants";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
@@ -10,7 +12,7 @@ const PortfolioSection = ({ children }: PortfolioSectionProps) => {
   return (
     <motion.div
       variants={itemVariants}
-      className="relative flex flex-col items-center h-screen p-4"
+      className="relative flex flex-col items-center h-svh p-4"
     >
       {children}
     </motion.div>
