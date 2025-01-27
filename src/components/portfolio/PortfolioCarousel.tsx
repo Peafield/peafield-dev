@@ -10,6 +10,8 @@ import {
 import { useEffect, useRef, useState } from "react";
 import CarouselSlide from "./CarouselSlide";
 import { useUiStore } from "@/store/ui";
+import clsx from "clsx";
+import { div } from "framer-motion/client";
 
 type PortfolioCarouselProps = {
   images: string[];
@@ -48,7 +50,12 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       style={{ height: isMobile ? "auto" : `${containerHeight}px` }}
     >
       {/* Sticky viewport container */}
-      <div className={`h-svh ${!isMobile && "sticky top-0 overflow-hidden"}`}>
+      <div
+        className={clsx("h-svh flex items-center", {
+          "justify-center": isMobile,
+          "sticky top-0 overflow-hidden justify-start": !isMobile,
+        })}
+      >
         <motion.div
           ref={gridRef}
           variants={itemVariants}
