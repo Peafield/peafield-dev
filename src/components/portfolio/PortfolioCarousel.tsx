@@ -25,14 +25,21 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   });
   const [containerHeight, setContainerHeight] = useState<number>(0);
   const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (outerRef.current && gridRef.current) {
+    if (!isMounted || !outerRef.current || !gridRef.current) return;
+
+    if (isMobile) {
+      // Mobile: Natural height, disable horizontal scroll
+      setContainerHeight(0);
+      setMaxScrollDistance(0);
+    } else {
+      // Desktop: Calculate for horizontal scroll
       const containerWidth = outerRef.current.offsetWidth;
       const contentWidth = gridRef.current.scrollWidth;
       const totalShift = contentWidth - containerWidth;
@@ -42,25 +49,24 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
       setContainerHeight(Math.min(newContainerHeight, baseHeight * 2));
       setMaxScrollDistance(Math.max(0, totalShift));
     }
-  }, [images]);
+  }, [images, isMobile, isMounted]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
+
   if (!isMounted) return null;
+
   return (
-    // Carousel
     <div
       className="mb-8"
-      style={{ height: containerHeight ? `${containerHeight}px` : "100svh" }}
+      style={{ height: isMobile ? "auto" : containerHeight || "100svh" }}
       ref={outerRef}
     >
-      {/* Carousel Container */}
-      <div className="h-svh md:overflow-hidden md:sticky md:top-0 flex items-center justify-center xl:justify-start">
-        {/* Slides */}
+      <div className="h-svh flex items-center justify-center md:h-dvh md:sticky md:top-0 md:overflow-hidden md:justify-start">
         <motion.div
           ref={gridRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100svh-160px)*1.5))] gap-[2vw]"
-          style={isMobile ? {} : { x }}
+          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100dvh-160px)*1.5))] gap-[2vw]"
+          style={isMobile ? undefined : { x }}
         >
           <AnimatePresence>
             {images.map((image, index) => (
