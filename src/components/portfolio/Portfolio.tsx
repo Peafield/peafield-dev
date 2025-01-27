@@ -9,6 +9,7 @@ import { RiScrollToBottomFill } from "react-icons/ri";
 import PortfolioContentItem from "./PortfolioContentItem";
 import { portfolioItems } from "@/data/portfolio";
 import ScrollToBottom from "./ScrollToBottom";
+import Divider from "../Divider";
 
 const Portfolio = () => {
   // TODO: Add opaque background image of yarn
@@ -23,6 +24,7 @@ const Portfolio = () => {
             <ScrollToBottom />
           </PortfolioSection>
           <PortfolioCarousel images={item.images} />
+          <Divider />
         </div>
       ))}
     </motion.div>

@@ -10,7 +10,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 import CarouselSlide from "./CarouselSlide";
 import { useUiStore } from "@/store/ui";
-import { div } from "framer-motion/client";
 
 type PortfolioCarouselProps = {
   images: string[];
@@ -22,6 +21,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: outerRef,
+    layoutEffect: false,
   });
   const [containerHeight, setContainerHeight] = useState<number>(0);
   const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
@@ -49,11 +49,12 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
   return (
     // Carousel
     <div
+      className="mb-8"
       style={{ height: containerHeight ? `${containerHeight}px` : "100svh" }}
       ref={outerRef}
     >
       {/* Carousel Container */}
-      <div className="h-svh overflow-hidden md:sticky md:top-0 flex items-center justify-center xl:justify-start">
+      <div className="h-svh md:overflow-hidden md:sticky md:top-0 flex items-center justify-center xl:justify-start">
         {/* Slides */}
         <motion.div
           ref={gridRef}
