@@ -23,50 +23,37 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
     target: outerRef,
     layoutEffect: false,
   });
-  const [containerHeight, setContainerHeight] = useState<number>(0);
-  const [maxScrollDistance, setMaxScrollDistance] = useState<number>(0);
-  const [isMounted, setIsMounted] = useState(false);
+  const [containerHeight, setContainerHeight] = useState(0);
+  const [maxScrollDistance, setMaxScrollDistance] = useState(0);
 
+  // Calculate dimensions only on desktop
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    if (isMobile || !outerRef.current || !gridRef.current) return;
 
-  useEffect(() => {
-    if (!isMounted || !outerRef.current || !gridRef.current) return;
+    const containerWidth = outerRef.current.offsetWidth;
+    const contentWidth = gridRef.current.scrollWidth;
+    const totalShift = contentWidth - containerWidth;
+    const baseHeight = window.innerHeight;
 
-    if (isMobile) {
-      // Mobile: Natural height, disable horizontal scroll
-      setContainerHeight(0);
-      setMaxScrollDistance(0);
-    } else {
-      // Desktop: Calculate for horizontal scroll
-      const containerWidth = outerRef.current.offsetWidth;
-      const contentWidth = gridRef.current.scrollWidth;
-      const totalShift = contentWidth - containerWidth;
-      const baseHeight = window.innerHeight;
-      const scrollableOverflow = Math.min(totalShift, containerWidth);
-      const newContainerHeight = baseHeight + Math.max(0, scrollableOverflow);
-      setContainerHeight(Math.min(newContainerHeight, baseHeight * 2));
-      setMaxScrollDistance(Math.max(0, totalShift));
-    }
-  }, [images, isMobile, isMounted]);
+    setContainerHeight(baseHeight * 2);
+    setMaxScrollDistance(totalShift);
+  }, [images, isMobile]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
 
-  if (!isMounted) return null;
-
   return (
     <div
-      className="mb-8"
-      style={{ height: isMobile ? "auto" : containerHeight || "100svh" }}
       ref={outerRef}
+      className="mb-16 sm:mb-8"
+      style={{ height: isMobile ? "auto" : `${containerHeight}px` }}
     >
-      <div className="h-svh flex items-center justify-center md:h-dvh md:sticky md:top-0 md:overflow-hidden md:justify-start">
+      {/* Sticky viewport container */}
+      <div className={`h-svh ${!isMobile && "sticky top-0 overflow-hidden"}`}>
         <motion.div
           ref={gridRef}
           variants={itemVariants}
           className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100dvh-160px)*1.5))] gap-[2vw]"
-          style={isMobile ? undefined : { x }}
+          style={!isMobile ? { x } : undefined}
         >
           <AnimatePresence>
             {images.map((image, index) => (
