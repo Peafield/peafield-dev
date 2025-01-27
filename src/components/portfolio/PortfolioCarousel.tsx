@@ -9,12 +9,15 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import CarouselSlide from "./CarouselSlide";
+import { useUiStore } from "@/store/ui";
+import { div } from "framer-motion/client";
 
 type PortfolioCarouselProps = {
   images: string[];
 };
 
 const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
+  const { isMobile } = useUiStore();
   const outerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: outerRef });
@@ -49,7 +52,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
           ref={gridRef}
           variants={itemVariants}
           className="grid grid-flow-row auto-rows-[100vw] md:grid-flow-col md:auto-cols-[min(100vw,calc((100vh-160px)*1.5))] gap-[2vw]"
-          style={{ x }}
+          style={isMobile ? {} : { x }}
         >
           <AnimatePresence>
             {images.map((image, index) => (
