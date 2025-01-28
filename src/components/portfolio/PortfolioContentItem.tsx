@@ -17,6 +17,20 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
   const { isMobile } = useUiStore();
   return (
     <>
+      {!isMobile && (
+        <motion.div
+          variants={itemVariants}
+          className="relative md:w-[100vh] xl:w-[80vh] aspect-[3/2]"
+        >
+          <Image
+            src={item.image.hero.src}
+            alt=""
+            fill
+            className="object-cover rounded-lg"
+          />
+          <ImageDescription description={item.image.hero.description} />
+        </motion.div>
+      )}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -81,20 +95,6 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
           </motion.div>
         )}
       </motion.div>
-      {!isMobile && (
-        <motion.div
-          variants={itemVariants}
-          className="relative w-full aspect-[3/2] md:max-h-[calc(100svh-160px)]"
-        >
-          <Image
-            src={item.image.hero.src}
-            alt=""
-            fill
-            className="object-contain rounded-lg"
-          />
-          <ImageDescription description={item.image.hero.description} />
-        </motion.div>
-      )}
     </>
   );
 };

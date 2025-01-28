@@ -9,7 +9,7 @@ const PortfolioContent = ({ children }: PortfolioContentProps) => {
   return (
     <motion.div
       variants={itemVariants}
-      className="h-full md:h-[80%] md:grid md:grid-flow-col md:auto-cols-auto md:gap-4"
+      className="md:grid md:grid-flow-row md:auto-row-auto md:gap-4 xl:grid-flow-col xl:auto-cols-auto"
     >
       {children}
     </motion.div>
