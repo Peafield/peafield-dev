@@ -9,23 +9,19 @@ import PortfolioContent from "./PortfolioContent";
 import PortfolioContentItem from "./PortfolioContentItem";
 import PortfolioSection from "./PortfolioSection";
 import ScrollToBottom from "./ScrollToBottom";
+import { useUiStore } from "@/store/ui";
+import clsx from "clsx";
 
 const Portfolio = () => {
-  const containerRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
-
-  useEffect(() => {
-    containerRefs.current = portfolioItems.map(
-      (_, i) => containerRefs.current[i] ?? React.createRef<HTMLDivElement>()
-    );
-  }, [portfolioItems]);
-
+  const { isMobile } = useUiStore();
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       {portfolioItems.map((item, index) => (
         <div
           key={index}
-          className="min-h-svh md:min-h-[180vh] pb-4 mb-8"
-          ref={containerRefs.current[index]}
+          className={clsx({
+            "min-h-svh pb-4 mb-8": isMobile,
+          })}
         >
           <PortfolioSection>
             <PortfolioContent>
@@ -33,10 +29,7 @@ const Portfolio = () => {
               <ScrollToBottom />
             </PortfolioContent>
           </PortfolioSection>
-          <PortfolioCarousel
-            images={item.image.images}
-            containerRef={containerRefs.current[index]!}
-          />
+          <PortfolioCarousel images={item.image.images} />
         </div>
       ))}
     </motion.div>
