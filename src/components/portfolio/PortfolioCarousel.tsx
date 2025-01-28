@@ -28,6 +28,7 @@ const PortfolioCarousel = ({
   const [maxScrollDistance, setMaxScrollDistance] = useState(0);
   console.log("🚀 ~ maxScrollDistance:", maxScrollDistance);
 
+  // TODO: this is not working!!
   // Calculate scroll distance on mount and resize
   useEffect(() => {
     if (isMobile || !outerRef.current || !contentRef.current) return;

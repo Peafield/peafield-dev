@@ -1,17 +1,14 @@
 "use client";
 
 import { containerVariants } from "@/constants/constants";
-import { motion } from "framer-motion";
-import PortfolioSection from "./PortfolioSection";
-import PortfolioContent from "./PortfolioContent";
-import PortfolioCarousel from "./PortfolioCarousel";
-import { RiScrollToBottomFill } from "react-icons/ri";
-import PortfolioContentItem from "./PortfolioContentItem";
 import { portfolioItems } from "@/data/portfolio";
+import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import PortfolioCarousel from "./PortfolioCarousel";
+import PortfolioContent from "./PortfolioContent";
+import PortfolioContentItem from "./PortfolioContentItem";
+import PortfolioSection from "./PortfolioSection";
 import ScrollToBottom from "./ScrollToBottom";
-import Divider from "../Divider";
-import { useEffect, useRef } from "react";
-import React from "react";
 
 const Portfolio = () => {
   const containerRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
