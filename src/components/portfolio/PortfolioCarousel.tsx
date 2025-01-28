@@ -11,55 +11,64 @@ import { useEffect, useRef, useState } from "react";
 import CarouselSlide from "./CarouselSlide";
 import { useUiStore } from "@/store/ui";
 import clsx from "clsx";
-import { div } from "framer-motion/client";
+import { div, style } from "framer-motion/client";
 
 type PortfolioCarouselProps = {
-  images: string[];
+  images: { src: string; description: string }[];
+  containerRef: React.RefObject<HTMLDivElement>;
 };
 
-const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
+const PortfolioCarousel = ({
+  images,
+  containerRef,
+}: PortfolioCarouselProps) => {
   const { isMobile } = useUiStore();
   const outerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: outerRef,
-    layoutEffect: false,
-  });
-  const [containerHeight, setContainerHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [maxScrollDistance, setMaxScrollDistance] = useState(0);
+  console.log("🚀 ~ maxScrollDistance:", maxScrollDistance);
 
-  // Calculate dimensions only on desktop
+  // Calculate scroll distance on mount and resize
   useEffect(() => {
-    if (isMobile || !outerRef.current || !gridRef.current) return;
+    if (isMobile || !outerRef.current || !contentRef.current) return;
 
-    const containerWidth = outerRef.current.offsetWidth;
-    const contentWidth = gridRef.current.scrollWidth;
-    const totalShift = contentWidth - containerWidth;
-    const baseHeight = window.innerHeight;
+    const updateScrollDistance = () => {
+      const slideWidth = window.innerHeight * 0.8 * 1.5; // 80vh * 3/2 aspect
+      const gapWidth = window.innerWidth * 0.03; // 3vw gap
+      const contentWidth =
+        images.length * slideWidth + (images.length - 1) * gapWidth;
+      const containerWidth = outerRef.current!.offsetWidth;
+      setMaxScrollDistance(contentWidth - containerWidth);
+    };
 
-    setContainerHeight(baseHeight * 2);
-    setMaxScrollDistance(totalShift);
+    updateScrollDistance();
+    window.addEventListener("resize", updateScrollDistance);
+    return () => window.removeEventListener("resize", updateScrollDistance);
   }, [images, isMobile]);
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
+  const x = useTransform(scrollYProgress, [0, 1], [0, -maxScrollDistance]);
   return (
-    <div
-      ref={outerRef}
-      className="mb-16 sm:mb-8"
-      style={{ height: isMobile ? "auto" : `${containerHeight}px` }}
-    >
+    <div className="h-full">
       {/* Sticky viewport container */}
       <div
-        className={clsx("h-svh flex items-center", {
-          "justify-center": isMobile,
+        ref={outerRef}
+        className={clsx("h-full flex items-center", {
           "sticky top-0 overflow-hidden justify-start": !isMobile,
+          "justify-center": isMobile,
         })}
       >
         <motion.div
-          ref={gridRef}
+          ref={contentRef}
           variants={itemVariants}
-          className="grid grid-flow-row auto-rows-auto md:grid-flow-col md:auto-cols-[min(100vw,calc((100dvh-160px)*1.5))] gap-[3vw]"
+          className={clsx("h-full gap-[3vw]", {
+            flex: !isMobile,
+            "h-full grid grid-flow-row auto-rows-auto ": isMobile,
+          })}
           style={!isMobile ? { x } : undefined}
         >
           <AnimatePresence>

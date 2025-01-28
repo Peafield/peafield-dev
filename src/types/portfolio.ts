@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { object, z } from "zod";
 import { ReactNode } from "react";
 
 export const PortfolioItemsSchema = z.array(
@@ -12,7 +12,18 @@ export const PortfolioItemsSchema = z.array(
     projectOverview: z.string(),
     technologies: z.array(z.string()),
     roles: z.any() as z.ZodType<ReactNode>,
-    images: z.array(z.string()),
+    image: z.object({
+      images: z.array(
+        z.object({
+          src: z.string(),
+          description: z.string(),
+        })
+      ),
+      hero: z.object({
+        src: z.string(),
+        description: z.string(),
+      }),
+    }),
   })
 );
 

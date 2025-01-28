@@ -37,16 +37,37 @@ export const portfolioItems: PortfolioItem = [
         to ensure product reliability.
       </>
     ),
-    images: [
-      "/portfolio/yarn1.webp",
-      "/portfolio/yarn2.webp",
-      "/portfolio/yarn4.webp",
-    ],
+    image: {
+      images: [
+        {
+          src: "/portfolio/yarn1.webp",
+          description: "Profile selection and creation",
+        },
+        {
+          src: "/portfolio/yarn2.webp",
+          description:
+            "A user library, full of created stories and collections",
+        },
+        {
+          src: "/portfolio/yarn3.webp",
+          description:
+            "A collection of Pim-Pim stories that can be shared with friends and family",
+        },
+        {
+          src: "/portfolio/yarn4.webp",
+          description: "Listening to a story",
+        },
+      ],
+      hero: {
+        src: "/portfolio/yarnhero.webp",
+        description: "Yarn homepage with dynamic background",
+      },
+    },
   },
   {
     name: "Wendi's Worminghall Whimsies",
     links: {
-      live: "https://www.wendiwhimsies.com",
+      live: "https://www.wendisworminghallwhimsies.uk/",
       repo: "https://github.com/Peafield/poetry-site",
     },
     projectOverview:
@@ -72,10 +93,25 @@ export const portfolioItems: PortfolioItem = [
         R2 Object Storage.
       </>
     ),
-    images: [
-      "/portfolio/www1.webp",
-      "/portfolio/wwwcms.webp",
-      "/portfolio/www2.webp",
-    ],
+    image: {
+      images: [
+        {
+          src: "/portfolio/www1.webp",
+          description: "Homepage with latest stories and custom carousel",
+        },
+        {
+          src: "/portfolio/wwwcms.webp",
+          description: "CMS for creating poems with preview pane",
+        },
+        {
+          src: "/portfolio/www2.webp",
+          description: "Secure authentification with JWT",
+        },
+      ],
+      hero: {
+        src: "/portfolio/wwwhero.webp",
+        description: "Archive page with custom cards",
+      },
+    },
   },
 ];
