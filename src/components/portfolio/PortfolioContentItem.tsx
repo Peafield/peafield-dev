@@ -36,7 +36,7 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
         </motion.div>
         <motion.div
           variants={itemVariants}
-          className="prose dark:prose-invert flex items-center justify-start gap-4"
+          className="prose dark:prose-invert flex items-center justify-start gap-[2vw]"
         >
           <p className="text-start dark:font-light pt-1 text-lime-700 dark:text-lime-300">
             <span className="text-black dark:text-white font-medium">
@@ -84,7 +84,7 @@ const PortfolioContentItem = ({ item }: PortfolioContentItemProps) => {
       {!isMobile && (
         <motion.div
           variants={itemVariants}
-          className="relative w-full aspect-[3/2] max-h-[calc(100svh-160px)]"
+          className="relative w-full aspect-[3/2] md:max-h-[calc(100svh-160px)]"
         >
           <Image
             src={item.image.hero.src}
