@@ -2,15 +2,14 @@
 
 import { containerVariants } from "@/constants/constants";
 import { portfolioItems } from "@/data/portfolio";
+import { useUiStore } from "@/store/ui";
+import clsx from "clsx";
 import { motion } from "framer-motion";
-import React, { useEffect, useRef } from "react";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioContent from "./PortfolioContent";
 import PortfolioContentItem from "./PortfolioContentItem";
 import PortfolioSection from "./PortfolioSection";
 import ScrollToBottom from "./ScrollToBottom";
-import { useUiStore } from "@/store/ui";
-import clsx from "clsx";
 
 const Portfolio = () => {
   const { isMobile } = useUiStore();
@@ -26,7 +25,7 @@ const Portfolio = () => {
           <PortfolioSection>
             <PortfolioContent>
               <PortfolioContentItem item={item} />
-              <ScrollToBottom />
+              {isMobile && <ScrollToBottom />}
             </PortfolioContent>
           </PortfolioSection>
           <PortfolioCarousel images={item.image.images} />

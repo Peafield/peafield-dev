@@ -55,8 +55,7 @@ const PortfolioCarousel = ({ images }: PortfolioCarouselProps) => {
           ref={gridRef}
           variants={itemVariants}
           className={clsx("grid gap-[3vw]", {
-            "grid-flow-col auto-cols-[min(100vw,calc((100vh-160px)*1.5))]":
-              !isMobile,
+            "grid-flow-col auto-cols-auto": !isMobile,
             "h-full grid grid-flow-row auto-rows-auto ": isMobile,
           })}
           style={!isMobile ? { x } : undefined}
