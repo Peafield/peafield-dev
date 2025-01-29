@@ -25,8 +25,8 @@ const Portfolio = () => {
           <PortfolioSection>
             <PortfolioContent>
               <PortfolioContentItem item={item} />
-              {isMobile && <ScrollToBottom />}
             </PortfolioContent>
+            <ScrollToBottom />
           </PortfolioSection>
           <PortfolioCarousel images={item.image.images} />
         </div>
