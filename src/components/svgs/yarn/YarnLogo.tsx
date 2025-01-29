@@ -1,4 +1,4 @@
-import { IconProps } from "@/types/icons";
+import { IconProps } from "@/types/icon";
 
 const YarnLogo = ({ className }: IconProps) => {
   return (
