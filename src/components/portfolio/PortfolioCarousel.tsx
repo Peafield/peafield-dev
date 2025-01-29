@@ -1,6 +1,8 @@
 "use client";
 
 import { itemVariants } from "@/constants/constants";
+import { useUiStore } from "@/store/ui";
+import clsx from "clsx";
 import {
   AnimatePresence,
   motion,
@@ -9,9 +11,6 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import CarouselSlide from "./CarouselSlide";
-import { useUiStore } from "@/store/ui";
-import clsx from "clsx";
-import { div, style } from "framer-motion/client";
 
 type PortfolioCarouselProps = {
   images: { src: string; description: string }[];
