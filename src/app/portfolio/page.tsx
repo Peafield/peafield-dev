@@ -1,7 +1,8 @@
-import TempPage from "@/components/TempPage";
+import Container from "@/components/Container";
+import Portfolio from "@/components/portfolio/Portfolio";
 
 const PortfolioPage = () => {
-  return <TempPage />;
+  return <Portfolio />;
 };
 
 export default PortfolioPage;
