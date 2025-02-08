@@ -1,6 +1,6 @@
 import { PortfolioItem } from "@/types/portfolio";
 
-export const portfolioItems: PortfolioItem = [
+export const portfolioItems: PortfolioItem[] = [
   {
     name: "Yarn",
     links: {

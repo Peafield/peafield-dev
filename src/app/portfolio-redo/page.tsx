@@ -1,5 +1,6 @@
-import PortfolioRedo from "@/components/portfolio-redo/PortfolioRedo";
+import PortfolioItemSections from "@/components/portfolio-redo/PortfolioItemsSections";
+import { portfolioItems } from "@/data/portfolio";
 
 export default function PortfolioPage() {
-  return <PortfolioRedo />;
+  return <PortfolioItemSections portfolioItem={portfolioItems[0]} />;
 }

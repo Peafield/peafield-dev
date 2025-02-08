@@ -36,7 +36,7 @@ export default function RootLayout({
         <StoreInit />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <main className="flex-1 flex flex-col justify-center">
+          <main className="flex-1 flex flex-col items-center justify-center">
             {children}
           </main>
         </ThemeProvider>

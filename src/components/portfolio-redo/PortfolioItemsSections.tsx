@@ -1,11 +1,17 @@
 "use client";
 
+import { PortfolioItem } from "@/types/portfolio";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import PortfolioCarousel from "./PortfolioCarousel";
-import { portfolioItems } from "@/data/portfolio";
 
-const PortfolioRedo = () => {
+type PortfolioItemSectionsProps = {
+  portfolioItem: PortfolioItem;
+};
+
+const PortfolioItemSections = ({
+  portfolioItem,
+}: PortfolioItemSectionsProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -13,7 +19,7 @@ const PortfolioRedo = () => {
     offset: ["start start", "end end"],
   });
 
-  const numItems = 4;
+  const numItems = portfolioItem.image.images.length;
   const vw = typeof window !== "undefined" ? window.innerWidth : 0;
   const xRange = -((numItems - 1) * vw);
   const x = useTransform(scrollYProgress, [0, 1], [0, xRange]);
@@ -22,13 +28,16 @@ const PortfolioRedo = () => {
     <>
       {/* Portfolio */}
       <article className="w-[98vw]">
+        {/* Header */}
         <header className="h-[70vh] flex items-center justify-center">
-          <h2 className="text-4xl font-bold text-center">Portfolio</h2>
+          <h2 className="text-4xl font-bold text-center">
+            {portfolioItem.name}
+          </h2>
         </header>
         {/* Portfolion Group Container */}
         <section ref={scrollContainerRef} className="h-[500vh] relative">
           {/* Portfolio Img Sticky Container */}
-          <PortfolioCarousel x={x} />
+          <PortfolioCarousel x={x} images={portfolioItem.image.images} />
           {/* Portfolio Content */}
         </section>
         {/* Bottom Info */}
@@ -44,4 +53,4 @@ const PortfolioRedo = () => {
     </>
   );
 };
-export default PortfolioRedo;
+export default PortfolioItemSections;
