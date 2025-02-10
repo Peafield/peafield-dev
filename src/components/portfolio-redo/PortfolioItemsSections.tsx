@@ -4,6 +4,10 @@ import { PortfolioItem } from "@/types/portfolio";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import PortfolioCarousel from "./PortfolioCarousel";
+import PortfolioHeader from "./PortfolioHeader";
+import SVGAnimation from "./SVGPortfolioArrowAnimation";
+import { useUiStore } from "@/store/ui";
+import SVGPortfolioArrowAnimation from "./SVGPortfolioArrowAnimation";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
@@ -12,6 +16,7 @@ type PortfolioItemSectionsProps = {
 const PortfolioItemSections = ({
   portfolioItem,
 }: PortfolioItemSectionsProps) => {
+  const { isMobile } = useUiStore();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -26,16 +31,13 @@ const PortfolioItemSections = ({
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   return (
     <>
+      {!isMobile && <SVGPortfolioArrowAnimation />}
       {/* Portfolio */}
       <article className="w-[98vw]">
         {/* Header */}
-        <header className="h-[70vh] flex items-center justify-center">
-          <h2 className="text-4xl font-bold text-center">
-            {portfolioItem.name}
-          </h2>
-        </header>
+        <PortfolioHeader item={portfolioItem} />
         {/* Portfolion Group Container */}
-        <section ref={scrollContainerRef} className="h-[500vh] relative">
+        <section ref={scrollContainerRef} className="h-[500vh] ">
           {/* Portfolio Img Sticky Container */}
           <PortfolioCarousel x={x} images={portfolioItem.image.images} />
           {/* Portfolio Content */}

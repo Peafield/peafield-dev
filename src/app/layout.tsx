@@ -32,7 +32,7 @@ export default function RootLayout({
       className={`${inter.variable} ${openSans.variable}`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col min-h-svh flex-nowrap">
+      <body className="flex flex-col min-h-svh flex-nowrap relative">
         <StoreInit />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />

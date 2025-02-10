@@ -45,13 +45,11 @@ export const portfolioItems: PortfolioItem[] = [
         },
         {
           src: "/portfolio/yarn2.webp",
-          description:
-            "A user library, full of created stories and collections",
+          description: "A user library",
         },
         {
           src: "/portfolio/yarn3.webp",
-          description:
-            "A collection of Pim-Pim stories that can be shared with friends and family",
+          description: "A collection of sharable stories",
         },
         {
           src: "/portfolio/yarn4.webp",
