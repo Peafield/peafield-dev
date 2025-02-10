@@ -31,7 +31,7 @@ const PortfolioItemSections = ({
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   return (
     <>
-      {!isMobile && <SVGPortfolioArrowAnimation />}
+      {/* {!isMobile && <SVGPortfolioArrowAnimation />} */}
       {/* Portfolio */}
       <article className="w-[98vw]">
         {/* Header */}

@@ -16,11 +16,11 @@ const SVGPortfolioArrowAnimation = () => {
   const lineVariants = {
     hidden: {
       pathLength: 0,
-      opacity: 0, // Add opacity: 0 to make lines completely invisible
+      opacity: 0,
     },
     visible: {
       pathLength: 1,
-      opacity: 1, // Fade in the lines
+      opacity: 1,
       transition: {
         pathLength: {
           duration: 1,
@@ -28,8 +28,8 @@ const SVGPortfolioArrowAnimation = () => {
           delay: 2,
         },
         opacity: {
-          duration: 0.01, // Quick opacity transition
-          delay: 2, // Start showing when animation begins
+          duration: 0.01,
+          delay: 2,
         },
       },
     },
