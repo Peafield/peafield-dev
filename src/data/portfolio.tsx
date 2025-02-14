@@ -54,7 +54,7 @@ export const portfolioItems: PortfolioItem[] = [
       },
       {
         description:
-          "📋️ Creating a multi-step profile creation process to allow users to share more of their personality.",
+          "📋️ Creating a multi-step profile creation form to allow users to share more of their personality.",
       },
       { description: "🕹️ Improving the wait experience with a fun mini-game." },
       { description: "🐌 Adding joy to the app with quirky SVG animations." },

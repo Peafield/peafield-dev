@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import ImageDescription from "../portfolio/ImageDescription";
+import ImageDescription from "./ImageDescription";
 
 type PortfolioCarouselSlideProps = {
   image: { src: string; description: string };

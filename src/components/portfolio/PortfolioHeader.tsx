@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { RiExternalLinkLine, RiGithubFill } from "react-icons/ri";
-import ImageDescription from "../portfolio/ImageDescription";
-import YarnHeader from "../portfolio/YarnHeader";
+import ImageDescription from "./ImageDescription";
+import YarnHeader from "./YarnHeader";
 
 type PortfolioHeaderProps = {
   item: PortfolioItem;

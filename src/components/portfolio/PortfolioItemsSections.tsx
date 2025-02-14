@@ -1,12 +1,12 @@
 "use client";
 
-import { useUiStore } from "@/store/ui";
 import { PortfolioItem } from "@/types/portfolio";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import ScrollToBottom from "./ScrollToBottom";
 import PortfolioCarousel from "./PortfolioCarousel";
+import PortfolioFooter from "./PortfolioFooter";
 import PortfolioHeader from "./PortfolioHeader";
-import ScrollToBottom from "../portfolio/ScrollToBottom";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
@@ -15,7 +15,6 @@ type PortfolioItemSectionsProps = {
 const PortfolioItemSections = ({
   portfolioItem,
 }: PortfolioItemSectionsProps) => {
-  const { isMobile } = useUiStore();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -30,29 +29,17 @@ const PortfolioItemSections = ({
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   return (
     <>
-      {/* {!isMobile && <SVGPortfolioArrowAnimation />} */}
       {/* Portfolio */}
       <article className="w-[98vw]">
-        {/* Header */}
         <PortfolioHeader item={portfolioItem} />
-        {/* Portfolion Group Container */}
         <ScrollToBottom />
+        {/* Portfolio Carousel Container */}
         <section ref={scrollContainerRef} className="h-[500vh] ">
-          {/* Portfolio Img Sticky Container */}
           <PortfolioCarousel x={x} images={portfolioItem.image.images} />
-          {/* Portfolio Content */}
         </section>
-        {/* Bottom Info */}
-        <footer className="h-[70vh] w-full flex items-center justify-center">
-          <div className="prose dark:prose-invert size-full flex flex-col mx-2 xl:item-center xl:justify-center">
-            <h1>Achievements</h1>
-            {portfolioItem.achievements.map((item, index) => (
-              <p key={index}>{item.description}</p>
-            ))}
-          </div>
-        </footer>
+        <PortfolioFooter portfolioItem={portfolioItem} />
       </article>
-      {/* Progress Bar */}
+      {/* Portfolio Progress Bar */}
       <motion.div
         className="fixed left-0 right-0 h-2 bg-terminal bottom-12 translate-x-0"
         style={{ scaleX }}

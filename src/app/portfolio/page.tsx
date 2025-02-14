@@ -1,8 +1,7 @@
-import Container from "@/components/Container";
-import Portfolio from "@/components/portfolio/Portfolio";
+import PortfolioItemSections from "@/components/portfolio/PortfolioItemsSections";
+import { portfolioItems } from "@/data/portfolio";
 
-const PortfolioPage = () => {
-  return <Portfolio />;
-};
-
-export default PortfolioPage;
+// TODO: display portfolio cards which link to the portfolio item page
+export default function PortfolioPage() {
+  return <PortfolioItemSections portfolioItem={portfolioItems[0]} />;
+}
