@@ -1,13 +1,11 @@
 "use client";
 
+import { useUiStore } from "@/store/ui";
 import { PortfolioItem } from "@/types/portfolio";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioHeader from "./PortfolioHeader";
-import SVGAnimation from "./SVGPortfolioArrowAnimation";
-import { useUiStore } from "@/store/ui";
-import SVGPortfolioArrowAnimation from "./SVGPortfolioArrowAnimation";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
