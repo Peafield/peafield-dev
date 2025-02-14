@@ -43,11 +43,13 @@ const PortfolioItemSections = ({
           {/* Portfolio Content */}
         </section>
         {/* Bottom Info */}
-        <footer className="prose dark:prose-invert min-h-[70vh] flex flex-col mx-2">
-          <h1>Achievements</h1>
-          {portfolioItem.achievements.map((item, index) => (
-            <p key={index}>{item.description}</p>
-          ))}
+        <footer className="h-[70vh] w-full flex items-center justify-center">
+          <div className="prose dark:prose-invert size-full flex flex-col mx-2 xl:item-center xl:justify-center">
+            <h1>Achievements</h1>
+            {portfolioItem.achievements.map((item, index) => (
+              <p key={index}>{item.description}</p>
+            ))}
+          </div>
         </footer>
       </article>
       {/* Progress Bar */}
