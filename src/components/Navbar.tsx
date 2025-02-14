@@ -30,12 +30,12 @@ const Navbar = () => {
     { id: 3, text: "Contact", path: "/contact" },
   ];
   return (
-    <header className="asbsolute z-50 ">
-      <nav className="container mx-auto flex justify-between items-center p-4">
+    <header className="sticky top-0 z-50 bg-white dark:bg-black shadow-md">
+      <nav className="mx-auto flex justify-between items-center p-4">
         {/* Home */}
         <div>
           <Link href="/">
-            <motion.span className="font-openSans font-medium text-xl md:text-2xl">
+            <motion.span className="font-openSans font-medium text-xl">
               {logoText.map((letter, index) => (
                 <motion.span
                   key={index}
@@ -100,7 +100,7 @@ const Navbar = () => {
                 <li key={link.id}>
                   <Link
                     href={link.path}
-                    className="font-openSans font-medium text-xl md:text-2xl hover:text-gray-700 hover:dark:text-gray-300"
+                    className="font-openSans font-medium text-xl hover:text-gray-700 hover:dark:text-gray-300"
                   >
                     {link.text}
                   </Link>

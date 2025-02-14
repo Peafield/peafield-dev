@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioHeader from "./PortfolioHeader";
+import ScrollToBottom from "../portfolio/ScrollToBottom";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
@@ -35,19 +36,23 @@ const PortfolioItemSections = ({
         {/* Header */}
         <PortfolioHeader item={portfolioItem} />
         {/* Portfolion Group Container */}
+        <ScrollToBottom />
         <section ref={scrollContainerRef} className="h-[500vh] ">
           {/* Portfolio Img Sticky Container */}
           <PortfolioCarousel x={x} images={portfolioItem.image.images} />
           {/* Portfolio Content */}
         </section>
         {/* Bottom Info */}
-        <footer className="h-[70vh] flex items-center justify-center">
-          <p>Some info</p>
+        <footer className="prose dark:prose-invert min-h-[70vh] flex flex-col mx-2">
+          <h1>Achievements</h1>
+          {portfolioItem.achievements.map((item, index) => (
+            <p key={index}>{item.description}</p>
+          ))}
         </footer>
       </article>
       {/* Progress Bar */}
       <motion.div
-        className="fixed left-0 right-0 h-2 bg-orange-600 bottom-12 translate-x-0"
+        className="fixed left-0 right-0 h-2 bg-terminal bottom-12 translate-x-0"
         style={{ scaleX }}
       />
     </>

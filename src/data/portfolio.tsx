@@ -1,4 +1,5 @@
 import { PortfolioItem } from "@/types/portfolio";
+import image from "next/image";
 
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -37,6 +38,27 @@ export const portfolioItems: PortfolioItem[] = [
         to ensure product reliability.
       </>
     ),
+    achievements: [
+      {
+        description:
+          "📚️ Rapidly building new features to allow school kids to create books from their yarns.",
+        link: "https://dayofai.org/day-of-ai-partners-with-yarn-media/",
+      },
+      {
+        description:
+          "🎠 Building a custom 'carousel' component for smooth transitions between story snippets.",
+      },
+      {
+        description:
+          "🤚 Implementing draggable elements for a playful user experience.",
+      },
+      {
+        description:
+          "📋️ Creating a multi-step profile creation process to allow users to share more of their personality.",
+      },
+      { description: "🕹️ Improving the wait experience with a fun mini-game." },
+      { description: "🐌 Adding joy to the app with quirky SVG animations." },
+    ],
     image: {
       images: [
         {
@@ -91,6 +113,7 @@ export const portfolioItems: PortfolioItem[] = [
         R2 Object Storage.
       </>
     ),
+    achievements: [],
     image: {
       images: [
         {

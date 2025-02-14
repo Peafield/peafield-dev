@@ -22,7 +22,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-[70vh] flex xl:items-center xl:justify-center xl:p-16 relative"
+      className="min-h-[70vh] flex xl:items-center xl:justify-center xl:px-16 relative"
     >
       {/* Header Items Container */}
       <motion.div
@@ -47,7 +47,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
             variants={itemVariants}
             className="flex items-center justify-start gap-[2vw] xl:prose xl:dark:prose-invert"
           >
-            <p className="text-start xl:text-2xl dark:font-light pt-1 text-lime-700 dark:text-lime-300">
+            <p className="text-start xl:text-xl dark:font-light pt-1 text-lime-700 dark:text-lime-300">
               <span className="text-black dark:text-white font-medium">
                 Made with:
               </span>{" "}
@@ -58,13 +58,13 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
             variants={itemVariants}
             className="font-light flex items-center xl:prose xl:dark:prose-invert"
           >
-            <p className="xl:text-2xl">{item.projectOverview}</p>
+            <p className="xl:text-xl">{item.projectOverview}</p>
           </motion.div>
           <motion.div
             variants={itemVariants}
             className="flex items-center justify-start gap-4 xl:prose xl:dark:prose-invert"
           >
-            <p className="text-start xl:text-2xl font-light pt-1">
+            <p className="text-start xl:text-xl font-light pt-1">
               <span className="text-black dark:text-white font-medium">
                 Role:
               </span>{" "}
@@ -73,7 +73,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
           </motion.div>
           <motion.div variants={itemVariants}>
             <Link href={item.links.live} target="_blank">
-              <p className="text-start font-light xl:text-2xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+              <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
                 <RiExternalLinkLine />
                 Live
               </p>
@@ -82,7 +82,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
           {item.links.repo && (
             <motion.div variants={itemVariants}>
               <Link href={item.links.repo} target="_blank">
-                <p className="text-start font-light xl:text-2xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+                <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
                   <RiGithubFill />
                   Repo
                 </p>
