@@ -12,7 +12,10 @@ import {
 } from "react-icons/ri";
 import DarkModeToggle from "./buttons/DarkModeToggle";
 import { header } from "framer-motion/client";
+import { PortfolioItem } from "@/types/portfolio";
+import { useUiStore } from "@/store/ui";
 const Navbar = () => {
+  const { setUiState } = useUiStore();
   const [, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -100,6 +103,14 @@ const Navbar = () => {
                 <li key={link.id}>
                   <Link
                     href={link.path}
+                    onClick={() => {
+                      link.id === 2
+                        ? setUiState({
+                            isCardClicked: false,
+                            clickedCard: {} as PortfolioItem,
+                          })
+                        : null;
+                    }}
                     className="font-openSans font-medium text-xl hover:text-gray-700 hover:dark:text-gray-300"
                   >
                     {link.text}
@@ -138,7 +149,15 @@ const Navbar = () => {
                     >
                       <Link
                         href={link.path}
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          link.id === 2
+                            ? setUiState({
+                                isCardClicked: false,
+                                clickedCard: {} as PortfolioItem,
+                              })
+                            : null;
+                        }}
                         className="font-openSans font-medium hover:text-gray-700 hover:dark:text-gray-300"
                         aria-disabled={true}
                       >
