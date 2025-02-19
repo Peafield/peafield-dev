@@ -113,7 +113,23 @@ export const portfolioItems: PortfolioItem[] = [
         R2 Object Storage.
       </>
     ),
-    achievements: [],
+    achievements: [
+      {
+        description:
+          "✍️ Built a flexible custom rich text editor with a live preview.",
+      },
+      {
+        description: "💰 Self‑hosted the site to keep running costs low.",
+      },
+      {
+        description:
+          "💯 Leveraged Next.js to create a seamless full‑stack solution.",
+      },
+      {
+        description:
+          "🔐 Developed a secure yet straightforward authentication with JWT.",
+      },
+    ],
     image: {
       images: [
         {
