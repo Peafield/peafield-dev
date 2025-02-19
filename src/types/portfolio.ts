@@ -10,7 +10,7 @@ export const PortfolioItemSchema = z.object({
   }),
   projectOverview: z.string(),
   technologies: z.array(z.string()),
-  roles: z.any() as z.ZodType<ReactNode>,
+  roles: z.string(),
   achievements: z.array(
     z.object({
       description: z.string(),

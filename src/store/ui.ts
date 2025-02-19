@@ -16,10 +16,6 @@ export const useUiStore = create<UiStore>()(
     ),
     {
       name: "ui",
-      partialize: (state) => ({
-        isMobile: state.isMobile,
-        isCardClicked: state.isCardClicked,
-      }),
     }
   )
 );
