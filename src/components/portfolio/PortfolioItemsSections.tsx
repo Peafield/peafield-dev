@@ -1,12 +1,21 @@
 "use client";
 
 import { PortfolioItem } from "@/types/portfolio";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import ScrollToBottom from "./ScrollToBottom";
+import {
+  AnimatePresence,
+  motion,
+  MotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import ScrollToBottom from "../scrollActions/ScrollToBottom";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioFooter from "./PortfolioFooter";
 import PortfolioHeader from "./PortfolioHeader";
+import ScrollToTop from "../scrollActions/ScrollToTop";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
@@ -15,6 +24,8 @@ type PortfolioItemSectionsProps = {
 const PortfolioItemSections = ({
   portfolioItem,
 }: PortfolioItemSectionsProps) => {
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [showProgressBar, setShowProgressBar] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -26,11 +37,17 @@ const PortfolioItemSections = ({
   const vw = typeof window !== "undefined" ? window.innerWidth : 0;
   const xRange = -((numItems - 1) * vw);
   const x = useTransform(scrollYProgress, [0, 1], [0, xRange]);
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const scaleX = useSpring(scrollYProgress);
+  useMotionValueEvent(scrollYProgress, "change", (currentY) => {
+    setShowScrollToTop(currentY > 0.5);
+    setShowProgressBar(currentY !== 1);
+  });
+
   return (
     <>
       {/* Portfolio */}
-      <article className="w-[98vw]">
+      <article className="relative w-[98vw]">
+        <AnimatePresence>{showScrollToTop && <ScrollToTop />}</AnimatePresence>
         <PortfolioHeader item={portfolioItem} />
         <ScrollToBottom />
         {/* Portfolio Carousel Container */}
@@ -40,10 +57,12 @@ const PortfolioItemSections = ({
         <PortfolioFooter portfolioItem={portfolioItem} />
       </article>
       {/* Portfolio Progress Bar */}
-      <motion.div
-        className="fixed left-0 right-0 h-2 bg-terminal bottom-12 translate-x-0"
-        style={{ scaleX }}
-      />
+      {showProgressBar && (
+        <motion.div
+          className="fixed left-0 right-0 h-2 bg-terminal bottom-12 translate-x-0"
+          style={{ scaleX }}
+        />
+      )}
     </>
   );
 };
