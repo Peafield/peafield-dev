@@ -4,18 +4,18 @@ import { PortfolioItem } from "@/types/portfolio";
 import {
   AnimatePresence,
   motion,
-  MotionValue,
   useMotionValueEvent,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ScrollToBottom from "../scrollActions/ScrollToBottom";
+import ScrollToTop from "../scrollActions/ScrollToTop";
+import BackToCardsButton from "./BackToCardsButton";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioFooter from "./PortfolioFooter";
 import PortfolioHeader from "./PortfolioHeader";
-import ScrollToTop from "../scrollActions/ScrollToTop";
 
 type PortfolioItemSectionsProps = {
   portfolioItem: PortfolioItem;
@@ -24,7 +24,7 @@ type PortfolioItemSectionsProps = {
 const PortfolioItemSections = ({
   portfolioItem,
 }: PortfolioItemSectionsProps) => {
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [showHiddenButtons, setShowHiddenButtons] = useState(false);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +39,7 @@ const PortfolioItemSections = ({
   const x = useTransform(scrollYProgress, [0, 1], [0, xRange]);
   const scaleX = useSpring(scrollYProgress);
   useMotionValueEvent(scrollYProgress, "change", (currentY) => {
-    setShowScrollToTop(currentY > 0.5);
+    setShowHiddenButtons(currentY > 0.5);
     setShowProgressBar(currentY !== 1);
   });
 
@@ -47,9 +47,16 @@ const PortfolioItemSections = ({
     <>
       {/* Portfolio */}
       <article className="relative w-[98vw]">
-        <AnimatePresence>{showScrollToTop && <ScrollToTop />}</AnimatePresence>
+        <AnimatePresence>
+          {showHiddenButtons && (
+            <>
+              <BackToCardsButton /> <ScrollToTop />
+            </>
+          )}
+        </AnimatePresence>
         <PortfolioHeader item={portfolioItem} />
         <ScrollToBottom />
+
         {/* Portfolio Carousel Container */}
         <section ref={scrollContainerRef} className="h-[500vh] ">
           <PortfolioCarousel x={x} images={portfolioItem.image.images} />
