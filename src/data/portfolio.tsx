@@ -1,6 +1,10 @@
 import { PortfolioItem } from "@/types/portfolio";
+import { on } from "events";
+import { a, data } from "framer-motion/client";
+import image from "next/image";
+import { custom } from "zod";
 
-export const portfolioItems: PortfolioItem = [
+export const portfolioItems: PortfolioItem[] = [
   {
     name: "Yarn",
     links: {
@@ -18,25 +22,29 @@ export const portfolioItems: PortfolioItem = [
       "Framer-Motion",
       "fastAPI",
     ],
-    roles: (
-      <>
-        I led the full-stack overhaul of yarn, migrating from legacy HTML/CSS/JS
-        to a modern{" "}
-        <span className="font-semibold text-purple-400">Next.js</span>{" "}
-        application with{" "}
-        <span className="font-semibold text-purple-300">SSR</span> for{" "}
-        <span className="font-semibold text-purple-300">SEO</span> optimization
-        and responsive interfaces. I managed a developer team using{" "}
-        <span className="font-semibold text-purple-300">Agile</span>{" "}
-        methodologies, guiding projects from ideation to deployment. Enhanced
-        backend functionality by extending{" "}
-        <span className="font-semibold text-purple-300">Python/fastAPI</span>{" "}
-        and integrating APIs like Mailchimp. Drove strategic decisions on
-        features and design to align with user needs and market demands.
-        Implemented rigorous QA via Playwright (E2E) and Vitest (unit testing)
-        to ensure product reliability.
-      </>
-    ),
+    roles:
+      "I led the full-stack overhaul of yarn, migrating from legacy HTML/CSS/JS to a modern Next.js application with SSR for SEO optimization and responsive interfaces. I managed a developer team using agile methodologies, guiding projects from ideation to deployment. Enhanced backend functionality by extending Python API and integrating APIs like Mailchimp. Drove strategic decisions on features and design to align with user needs and market demands. Implemented rigorous QA via Playwright (E2E) and Vitest (unit testing) to ensure product reliability.",
+    achievements: [
+      {
+        description:
+          "📚️ Rapidly building new features to allow school kids to create books from their yarns.",
+        link: "https://dayofai.org/day-of-ai-partners-with-yarn-media/",
+      },
+      {
+        description:
+          "🎠 Building a custom 'carousel' component for smooth transitions between story snippets.",
+      },
+      {
+        description:
+          "🤚 Implementing draggable elements for a playful user experience.",
+      },
+      {
+        description:
+          "📋️ Creating a multi-step profile creation form to allow users to share more of their personality.",
+      },
+      { description: "🕹️ Improving the wait experience with a fun mini-game." },
+      { description: "🐌 Adding joy to the app with quirky SVG animations." },
+    ],
     image: {
       images: [
         {
@@ -45,13 +53,11 @@ export const portfolioItems: PortfolioItem = [
         },
         {
           src: "/portfolio/yarn2.webp",
-          description:
-            "A user library, full of created stories and collections",
+          description: "A user library",
         },
         {
           src: "/portfolio/yarn3.webp",
-          description:
-            "A collection of Pim-Pim stories that can be shared with friends and family",
+          description: "A collection of sharable stories",
         },
         {
           src: "/portfolio/yarn4.webp",
@@ -81,18 +87,25 @@ export const portfolioItems: PortfolioItem = [
       "MongoDB",
       "TipTap",
     ],
-    roles: (
-      <>
-        I built a poety website for a client using{" "}
-        <span className="font-semibold text-purple-300">Next.js</span>. The site
-        features a custom CMS utlising TipTap for the author to manage their
-        content. I implemented server-side rendering for SEO optimization and
-        responsive design for mobile users. The site is self-hosted on a VPS and
-        uses a <span className="font-semibold text-purple-300">MongoDB</span>{" "}
-        database to store the poetry data, with the images hosted on Cloudflare
-        R2 Object Storage.
-      </>
-    ),
+    roles:
+      "I built a poety website for a client using Next.js. The site features a custom CMS utlising TipTap for the author to manage their content. I implemented server-side rendering for SEO optimization and responsive design for mobile users. The site is self-hosted on a VPS and uses a mongoDB database to store the poetry data, with the images hosted on Cloudflare R2 Object Storage.",
+    achievements: [
+      {
+        description:
+          "✍️ Built a flexible custom rich text editor with a live preview.",
+      },
+      {
+        description: "💰 Self‑hosted the site to keep running costs low.",
+      },
+      {
+        description:
+          "💯 Leveraged Next.js to create a seamless full‑stack solution.",
+      },
+      {
+        description:
+          "🔐 Developed a secure yet straightforward authentication with JWT.",
+      },
+    ],
     image: {
       images: [
         {

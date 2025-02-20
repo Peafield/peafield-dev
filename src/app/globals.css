@@ -12,3 +12,7 @@
     @apply font-inter
   }
   }
+
+::-webkit-scrollbar {
+  display: none;
+}

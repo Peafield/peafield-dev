@@ -1,3 +1,4 @@
+import { PortfolioItem } from "@/types/portfolio";
 import { UiStore } from "@/types/ui";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -8,6 +9,8 @@ export const useUiStore = create<UiStore>()(
     devtools(
       immer((set) => ({
         isMobile: false,
+        isCardClicked: false,
+        clickedCard: {} as PortfolioItem,
         setUiState: (newState) => set(() => newState),
       }))
     ),

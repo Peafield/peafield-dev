@@ -32,11 +32,13 @@ export default function RootLayout({
       className={`${inter.variable} ${openSans.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body className="flex flex-col min-h-svh flex-nowrap relative">
         <StoreInit />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          {children}
+          <main className="flex-1 flex flex-col items-center justify-center">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
