@@ -12,7 +12,7 @@ import {
 import { useRef, useState } from "react";
 import ScrollToBottom from "../scrollActions/ScrollToBottom";
 import ScrollToTop from "../scrollActions/ScrollToTop";
-import BackToCardsButton from "./BackToCardsButton";
+import BackToCardsButton from "../buttons/BackToCardsButton";
 import PortfolioCarousel from "./PortfolioCarousel";
 import PortfolioFooter from "./PortfolioFooter";
 import PortfolioHeader from "./PortfolioHeader";
