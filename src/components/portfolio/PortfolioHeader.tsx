@@ -37,7 +37,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
               {item.name === "Yarn" ? (
                 <YarnHeader />
               ) : (
-                <h1 className="text-4xl text-start font-bold hover:text-gray-700 hover:dark:text-gray-300">
+                <h1 className="text-4xl text-start font-bold hover:text-gray-700 dark:hover:text-gray-300">
                   {item.name}
                 </h1>
               )}
@@ -73,7 +73,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
           </motion.div>
           <motion.div variants={itemVariants}>
             <Link href={item.links.live} target="_blank">
-              <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+              <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1">
                 <RiExternalLinkLine />
                 Live
               </p>
@@ -82,7 +82,7 @@ const PortfolioHeader = ({ item }: PortfolioHeaderProps) => {
           {item.links.repo && (
             <motion.div variants={itemVariants}>
               <Link href={item.links.repo} target="_blank">
-                <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 hover:dark:text-gray-300 flex items-center gap-1">
+                <p className="text-start font-light xl:text-xl text-lime-700 dark:text-lime-300 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1">
                   <RiGithubFill />
                   Repo
                 </p>

@@ -43,7 +43,7 @@ const Intro = () => {
             <Link
               href="https://yarn.family"
               target="_blank"
-              className="font-inter hover:text-gray-700 hover:dark:text-gray-300 no-underline"
+              className="font-inter hover:text-gray-700 dark:hover:text-gray-300 no-underline"
             >
               yarn
             </Link>
@@ -129,7 +129,7 @@ const Intro = () => {
             target="_blank"
             className="flex items-center"
           >
-            <RiBlueskyLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiBlueskyLine className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             <span className="ml-2">Bluesky</span>
           </Link>
           <Link
@@ -137,7 +137,7 @@ const Intro = () => {
             target="_blank"
             className="flex items-center"
           >
-            <RiGithubFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiGithubFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             <span className="ml-2">Github</span>
           </Link>
           <Link
@@ -145,7 +145,7 @@ const Intro = () => {
             target="_blank"
             className="flex items-center"
           >
-            <RiMastodonFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiMastodonFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             <span className="ml-2">Mastodon</span>
           </Link>
           <Link
@@ -153,7 +153,7 @@ const Intro = () => {
             target="_blank"
             className="flex items-center"
           >
-            <RiPixelfedFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiPixelfedFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             <span className="ml-2">Pixelfed</span>
           </Link>
         </div>

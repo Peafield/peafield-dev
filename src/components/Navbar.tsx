@@ -80,7 +80,7 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <RiCloseFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+                  <RiCloseFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -90,7 +90,7 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <RiMenuFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+                  <RiMenuFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -111,7 +111,7 @@ const Navbar = () => {
                           })
                         : null;
                     }}
-                    className="font-openSans font-medium text-xl hover:text-gray-700 hover:dark:text-gray-300"
+                    className="font-openSans font-medium text-xl hover:text-gray-700 dark:hover:text-gray-300"
                   >
                     {link.text}
                   </Link>
@@ -158,7 +158,7 @@ const Navbar = () => {
                               })
                             : null;
                         }}
-                        className="font-openSans font-medium hover:text-gray-700 hover:dark:text-gray-300"
+                        className="font-openSans font-medium hover:text-gray-700 dark:hover:text-gray-300"
                         aria-disabled={true}
                       >
                         {link.text}
@@ -173,10 +173,10 @@ const Navbar = () => {
           {/* Socials and utils */}
           <div className="flex gap-x-4 items-center justify-center">
             <Link href="https://bsky.app/profile/peafield.dev" target="_blank">
-              <RiBlueskyLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+              <RiBlueskyLine className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             </Link>
             <Link href="https://github.com/Peafield" target="_blank">
-              <RiGithubFill className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+              <RiGithubFill className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
             </Link>
             <DarkModeToggle />
           </div>

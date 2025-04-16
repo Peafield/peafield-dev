@@ -43,7 +43,7 @@ const ContactForm = () => {
             name="name"
             required
             defaultValue={DOMPurify.sanitize(state?.values?.name || "")}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-hidden focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
             placeholder="Name"
           />
           <label
@@ -75,7 +75,7 @@ const ContactForm = () => {
             name="email"
             required
             defaultValue={DOMPurify.sanitize(state?.values?.email || "")}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-hidden focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
             placeholder="Email"
           />
           <label
@@ -107,7 +107,7 @@ const ContactForm = () => {
             required
             rows={10}
             defaultValue={DOMPurify.sanitize(state?.values?.message || "")}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-hidden focus:border-gray-300 dark:bg-gray-800 dark:border-none peer placeholder-transparent"
             placeholder="Message"
           />
           <label

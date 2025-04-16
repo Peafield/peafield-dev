@@ -35,7 +35,7 @@ const DarkModeToggle = () => {
             exit={{ opacity: 0, rotate: 45 }}
             transition={{ duration: 0.2 }}
           >
-            <RiSunLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiSunLine className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
           </motion.div>
         ) : (
           <motion.div
@@ -45,7 +45,7 @@ const DarkModeToggle = () => {
             exit={{ opacity: 0, rotate: -45 }}
             transition={{ duration: 0.2 }}
           >
-            <RiMoonLine className="size-6 hover:text-gray-700 hover:dark:text-gray-300" />
+            <RiMoonLine className="size-6 hover:text-gray-700 dark:hover:text-gray-300" />
           </motion.div>
         )}
       </AnimatePresence>
