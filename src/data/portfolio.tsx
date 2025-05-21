@@ -1,8 +1,4 @@
 import { PortfolioItem } from "@/types/portfolio";
-import { on } from "events";
-import { a, data } from "framer-motion/client";
-import image from "next/image";
-import { custom } from "zod";
 
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -67,6 +63,65 @@ export const portfolioItems: PortfolioItem[] = [
       hero: {
         src: "/portfolio/yarnhero.webp",
         description: "Yarn homepage with dynamic background",
+      },
+    },
+  },
+    {
+    name: "Film Pops",
+    links: {
+      live: "https://filmpops.peafield.dev",
+    },
+    projectOverview:
+      "Film Pops helps a bunch of dads decide what film they are going to see next at the cinema.",
+    technologies: [
+      "React",
+      "NextJS",
+      "Better-Auth",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer-Motion",
+    ],
+    roles:
+"Know the pain of busy dads picking a film? Film Pops to the rescue! Quickly tap a movie, vote 'Yeah!', 'Maybe?', or 'Nope!' Your votes instantly show the group's top picks. My goal: build it fast, make it fun, and keep movie nights easy. Featuring Better-auth for authentification, user settings and an admin dashboard for user and film management.",   achievements: [
+      {
+        description:
+          "🦎 Fast build time to get us pops watching films quickly.",
+      },
+      {
+        description:
+          "🚢 Self-hosting the site using Dockker.",
+      },
+      {
+        description:
+          "📋️ Adpating to user feedback to improve the experience.",
+      },
+            {
+        description:
+          "🧠 Learning how to implement Better-Auth.",
+      },
+    ],
+    image: {
+      images: [
+           {
+          src: "/portfolio/film_pops_pp.webp",
+          description: "Pops' Picks page.",
+        },
+        {
+          src: "/portfolio/film_pops_mm.webp",
+          description: "A film card modal.",
+        },
+             {
+          src: "/portfolio/film_pops_s.webp",
+          description: "User settings.",
+        },
+        {
+          src: "/portfolio/film_pops_a.webp",
+          description: "User management",
+        },
+      ],
+      hero: {
+        src: "/portfolio/film_pops_up.webp",
+        description: "Upcoming films page.",
       },
     },
   },
