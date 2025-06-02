@@ -5,12 +5,8 @@
 @layer base {
   body {
       @apply dark:bg-black 
-          bg-white
+          bg-white          
     }
-  
-  p {
-    @apply font-inter
-  }
   }
 
 ::-webkit-scrollbar {
