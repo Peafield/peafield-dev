@@ -1,27 +1,26 @@
 # Install dependencies only when needed
-FROM node:20-alpine AS deps
-
-RUN apk add --no-cache libc6-compat
-
+FROM oven/bun:1 AS deps
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json bun.lock ./
 
-RUN yarn install
+RUN bun install --frozen-lockfile
+
 
 # Rebuild the source code only when needed
-FROM node:20-alpine AS builder
-
+FROM oven/bun:1 AS builder
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/bun.lock ./bun.lock
+COPY --from=deps /app/package.json ./package.json
 
 COPY . .
 
-RUN yarn build
+RUN bun run build
 
 # Production image, copy all the files and run next
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
