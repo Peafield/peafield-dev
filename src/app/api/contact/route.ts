@@ -1,4 +1,4 @@
-import clientPromise from "@/lib/mongodb";
+import getClientPromise from "@/lib/mongodb";
 import { contactFormSchema } from "@/types/contact";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const json = await req.json();
     const parsedData = contactFormSchema.safeParse(json);
-    const client = await clientPromise;
+    const client = await getClientPromise();
     const db = client.db(process.env.MONGODB_DB_NAME);
     await db.collection("messages").insertOne(parsedData);
     return new Response("Message sent", { status: 201 });
