@@ -1,6 +1,5 @@
 {
   "name": "peafield-dev",
-  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,11 +9,6 @@
     "lint": "biome check . --write",
     "format": "biome format . --write",
     "check-types": "tsc --noEmit"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "biome check . --write"
-    ]
   },
   "dependencies": {
     "bowser": "^2.11.0",
