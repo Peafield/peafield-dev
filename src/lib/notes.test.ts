@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { parseFrontmatter } from "./notes";
+import { parseFrontmatter, selectVisibleNotes, type NoteMeta } from "./notes";
 
 const validRaw = `---
 title: "Test Note"
@@ -39,5 +39,34 @@ summary: "Missing title."
 ---
 Body.`;
     expect(() => parseFrontmatter(raw, "broken")).toThrow(/broken/);
+  });
+});
+
+function meta(slug: string, date: string, draft = false): NoteMeta {
+  return {
+    slug,
+    title: slug,
+    date: new Date(date),
+    summary: "s",
+    tags: [],
+    draft,
+  };
+}
+
+describe("selectVisibleNotes", () => {
+  const notes = [
+    meta("old", "2026-01-01"),
+    meta("new", "2026-03-01"),
+    meta("wip", "2026-02-01", true),
+  ];
+
+  test("sorts newest-first", () => {
+    const result = selectVisibleNotes(notes, { includeDrafts: true });
+    expect(result.map((n) => n.slug)).toEqual(["new", "wip", "old"]);
+  });
+
+  test("drops drafts when includeDrafts is false", () => {
+    const result = selectVisibleNotes(notes, { includeDrafts: false });
+    expect(result.map((n) => n.slug)).toEqual(["new", "old"]);
   });
 });

@@ -22,3 +22,12 @@ export function parseFrontmatter(raw: string, slug: string): NoteMeta {
   }
   return { ...result.data, slug };
 }
+
+export function selectVisibleNotes(
+  notes: NoteMeta[],
+  { includeDrafts }: { includeDrafts: boolean },
+): NoteMeta[] {
+  return notes
+    .filter((note) => includeDrafts || !note.draft)
+    .sort((a, b) => b.date.getTime() - a.date.getTime());
+}
