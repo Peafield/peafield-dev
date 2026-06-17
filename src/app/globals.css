@@ -1,13 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-openSans: var(--font-open-sans);
+  --font-inter: var(--font-inter);
+
+  --color-terminal: #7bba56;
+  --color-hoverColor: #9556ba;
+  --color-error: #ba567b;
+}
 
 @layer base {
   body {
-      @apply dark:bg-black 
-          bg-white          
-    }
+    @apply bg-white dark:bg-black;
   }
+}
 
 ::-webkit-scrollbar {
   display: none;

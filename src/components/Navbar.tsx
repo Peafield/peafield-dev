@@ -1,19 +1,18 @@
 "use client";
 
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
+import { useUiStore } from "@/store/ui";
+import { PortfolioItem } from "@/types/portfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   RiBlueskyLine,
-  RiGithubFill,
   RiCloseFill,
+  RiGithubFill,
   RiMenuFill,
 } from "react-icons/ri";
 import DarkModeToggle from "./buttons/DarkModeToggle";
-import { header } from "framer-motion/client";
-import { PortfolioItem } from "@/types/portfolio";
-import { useUiStore } from "@/store/ui";
 const Navbar = () => {
   const { setUiState } = useUiStore();
   const [, setMounted] = useState(false);
@@ -28,7 +27,8 @@ const Navbar = () => {
   const logoText = "Peafield.dev".split("");
 
   const navLinks = [
-    { id: 1, text: "Notes", path: "/notes" },
+    // TODO: re-enable once the notes section is ready
+    // { id: 1, text: "Notes", path: "/notes" },
     { id: 2, text: "Portfolio", path: "/portfolio" },
     { id: 3, text: "Contact", path: "/contact" },
   ];

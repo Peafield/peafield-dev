@@ -36,16 +36,16 @@ const Intro = () => {
               ease: "easeInOut",
             }}
           >
-            🧶
+            ⌨️
           </motion.div>
           <p className="ml-2">
-            Full-stack developer @{" "}
+            Frontend developer @{" "}
             <Link
-              href="https://yarn.family"
+              href="https://builtbypixel.com/"
               target="_blank"
               className="font-inter hover:text-gray-700 hover:dark:text-gray-300 no-underline"
             >
-              yarn
+              Built by Pixel
             </Link>
           </p>
         </div>
@@ -63,7 +63,7 @@ const Intro = () => {
             📚️
           </motion.div>
           <p className="ml-2">
-            <em>Building Book Kin (coming soon)</em>
+            <em>Building Spines (coming soon)</em>
           </p>
         </div>
         <div className="prose dark:prose-invert flex items-center mb-8">
@@ -84,15 +84,14 @@ const Intro = () => {
           </p>
         </div>
         <p>
-          I'm currently a full-stack developer at{" "}
-          <Link href="https://yarn.family" target="_blank">
-            yarn
+          I'm currently a frontend developer at{" "}
+          <Link href="https://builtbypixel.com/" target="_blank">
+            Built by Pixel{" "}
           </Link>
-          —an AI story creation tool for kids—where I focus on writing the
-          front-end with Next.js.
+          working on a large variety of projects all at once.
         </p>
         <p>
-          I’m busy building Book Kin—a platform to share your home library with
+          I’m busy working on Spines: a platform to share your home library with
           friends and family.
         </p>
         <p>
