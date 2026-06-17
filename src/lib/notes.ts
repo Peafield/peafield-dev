@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 
@@ -30,4 +32,31 @@ export function selectVisibleNotes(
   return notes
     .filter((note) => includeDrafts || !note.draft)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
+}
+
+const NOTES_DIR = path.join(process.cwd(), "src", "content", "notes");
+
+export function getNoteSlugs(): string[] {
+  if (!fs.existsSync(NOTES_DIR)) return [];
+  return fs
+    .readdirSync(NOTES_DIR)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => file.replace(/\.mdx$/, ""));
+}
+
+export function getAllNotes(): NoteMeta[] {
+  const notes = getNoteSlugs().map((slug) => {
+    const raw = fs.readFileSync(path.join(NOTES_DIR, `${slug}.mdx`), "utf8");
+    return parseFrontmatter(raw, slug);
+  });
+  return selectVisibleNotes(notes, {
+    includeDrafts: process.env.NODE_ENV !== "production",
+  });
+}
+
+export async function getNote(slug: string) {
+  const raw = fs.readFileSync(path.join(NOTES_DIR, `${slug}.mdx`), "utf8");
+  const meta = parseFrontmatter(raw, slug);
+  const { default: Content } = await import(`@/content/notes/${slug}.mdx`);
+  return { Content, meta };
 }
