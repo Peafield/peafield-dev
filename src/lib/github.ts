@@ -1,10 +1,16 @@
 import { Octokit } from "@octokit/rest";
 
 const NOTES_PATH = "src/content/notes";
+const SLUG_RE = /^[a-z0-9-]+$/;
 
 export type GithubConfig = { owner: string; repo: string; branch: string };
 
+// Validate here so every GitHub path is safe by construction — guards against
+// path traversal regardless of which caller built the slug.
 function notePath(slug: string): string {
+  if (!SLUG_RE.test(slug)) {
+    throw new Error(`Invalid note slug: ${slug}`);
+  }
   return `${NOTES_PATH}/${slug}.mdx`;
 }
 

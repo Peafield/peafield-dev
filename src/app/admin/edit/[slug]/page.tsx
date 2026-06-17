@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import NoteEditor from "@/components/admin/NoteEditor";
 import { getGithubClient } from "@/lib/github";
@@ -12,6 +13,7 @@ export default async function EditNotePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (!/^[a-z0-9-]+$/.test(slug)) notFound();
   const { raw } = await getGithubClient().getNoteSource(slug);
   const { fields, body } = parseNoteSource(raw);
   const action = updateNote.bind(null, slug);
