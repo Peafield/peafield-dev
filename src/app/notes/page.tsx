@@ -32,6 +32,7 @@ export default function NotesIndexPage() {
               year: "numeric",
               month: "long",
               day: "numeric",
+              timeZone: "UTC",
             })}
           </p>
           <p className="text-gray-700 dark:text-zinc-300">{note.summary}</p>

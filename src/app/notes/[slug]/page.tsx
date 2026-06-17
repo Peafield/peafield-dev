@@ -44,6 +44,7 @@ export default async function NotePage({
           year: "numeric",
           month: "long",
           day: "numeric",
+          timeZone: "UTC",
         })}
       </p>
       <Content />
