@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+// Plugins are declared by string name (not imported function) so they work
+// under Turbopack, which runs both `next dev --turbopack` and `next build`.
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [['remark-frontmatter']],
+  },
+});
 
 export default withMDX(nextConfig);
