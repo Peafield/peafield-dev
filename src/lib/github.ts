@@ -21,12 +21,20 @@ export function createGithubClient(octokit: Octokit, config: GithubConfig) {
 
   return {
     async listNotes(): Promise<{ slug: string; sha: string }[]> {
-      const res = await octokit.rest.repos.getContent({
-        owner,
-        repo,
-        path: NOTES_PATH,
-        ref: branch,
-      });
+      let res: Awaited<ReturnType<typeof octokit.rest.repos.getContent>>;
+      try {
+        res = await octokit.rest.repos.getContent({
+          owner,
+          repo,
+          path: NOTES_PATH,
+          ref: branch,
+        });
+      } catch (err) {
+        // The notes directory doesn't exist yet (no notes) — GitHub returns
+        // 404 for a missing path. Treat that as an empty list, not an error.
+        if ((err as { status?: number }).status === 404) return [];
+        throw err;
+      }
       const items = Array.isArray(res.data) ? res.data : [];
       return items
         .filter((i) => i.type === "file" && i.name.endsWith(".mdx"))
@@ -73,6 +81,13 @@ export function createGithubClient(octokit: Octokit, config: GithubConfig) {
 export function getGithubClient() {
   const [owner, repo] = (process.env.GITHUB_REPO ?? "").split("/");
   const branch = process.env.GITHUB_BRANCH ?? "main";
-  const octokit = new Octokit({ auth: process.env.GITHUB_PAT });
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_PAT,
+    // We handle non-2xx responses in code (e.g. a 404 when the notes directory
+    // doesn't exist yet is caught and treated as empty), and real failures are
+    // surfaced by the calling server action / page. Octokit's own request
+    // logging is therefore redundant noise — silence it.
+    log: { debug() {}, info() {}, warn() {}, error() {} },
+  });
   return createGithubClient(octokit, { owner, repo, branch });
 }
