@@ -12,7 +12,7 @@ export default async function AdminListPage() {
   // leak data into the RSC payload) even when the layout hides it. The layout
   // renders the sign-in screen for the unauthenticated case.
   const session = await auth();
-  if (!session) return null;
+  if (!session?.user) return null;
   const notes = await getGithubClient().listNotes();
   return (
     <Container>

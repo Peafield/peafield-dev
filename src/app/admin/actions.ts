@@ -13,7 +13,7 @@ export type NoteActionState = { error?: string };
 
 async function requireAdmin() {
   const session = await auth();
-  if (!session) throw new Error("Unauthorized");
+  if (!session?.user) throw new Error("Unauthorized");
 }
 
 const SLUG_RE = /^[a-z0-9-]+$/;
