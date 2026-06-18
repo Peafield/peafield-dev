@@ -1,8 +1,12 @@
+import { auth } from "@/auth";
 import Container from "@/components/Container";
 import NoteEditor from "@/components/admin/NoteEditor";
 import { createNote } from "../actions";
 
-export default function NewNotePage() {
+export default async function NewNotePage() {
+  // Page-level auth guard — the layout is not a security boundary.
+  const session = await auth();
+  if (!session) return null;
   return (
     <Container>
       <div className="py-8">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { auth } from "@/auth";
 import Container from "@/components/Container";
 import { getGithubClient } from "@/lib/github";
 import { deleteNote } from "./actions";
@@ -6,6 +7,12 @@ import { deleteNote } from "./actions";
 export const dynamic = "force-dynamic";
 
 export default async function AdminListPage() {
+  // Enforce auth in the page, before any data access. A layout is NOT a
+  // security boundary in the App Router: the page still renders (and would
+  // leak data into the RSC payload) even when the layout hides it. The layout
+  // renders the sign-in screen for the unauthenticated case.
+  const session = await auth();
+  if (!session) return null;
   const notes = await getGithubClient().listNotes();
   return (
     <Container>
