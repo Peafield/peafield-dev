@@ -81,6 +81,13 @@ export function createGithubClient(octokit: Octokit, config: GithubConfig) {
 export function getGithubClient() {
   const [owner, repo] = (process.env.GITHUB_REPO ?? "").split("/");
   const branch = process.env.GITHUB_BRANCH ?? "main";
-  const octokit = new Octokit({ auth: process.env.GITHUB_PAT });
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_PAT,
+    // We handle non-2xx responses in code (e.g. a 404 when the notes directory
+    // doesn't exist yet is caught and treated as empty), and real failures are
+    // surfaced by the calling server action / page. Octokit's own request
+    // logging is therefore redundant noise — silence it.
+    log: { debug() {}, info() {}, warn() {}, error() {} },
+  });
   return createGithubClient(octokit, { owner, repo, branch });
 }
