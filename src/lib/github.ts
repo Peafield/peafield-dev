@@ -21,12 +21,20 @@ export function createGithubClient(octokit: Octokit, config: GithubConfig) {
 
   return {
     async listNotes(): Promise<{ slug: string; sha: string }[]> {
-      const res = await octokit.rest.repos.getContent({
-        owner,
-        repo,
-        path: NOTES_PATH,
-        ref: branch,
-      });
+      let res: Awaited<ReturnType<typeof octokit.rest.repos.getContent>>;
+      try {
+        res = await octokit.rest.repos.getContent({
+          owner,
+          repo,
+          path: NOTES_PATH,
+          ref: branch,
+        });
+      } catch (err) {
+        // The notes directory doesn't exist yet (no notes) — GitHub returns
+        // 404 for a missing path. Treat that as an empty list, not an error.
+        if ((err as { status?: number }).status === 404) return [];
+        throw err;
+      }
       const items = Array.isArray(res.data) ? res.data : [];
       return items
         .filter((i) => i.type === "file" && i.name.endsWith(".mdx"))

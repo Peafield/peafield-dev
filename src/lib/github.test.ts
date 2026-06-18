@@ -55,4 +55,18 @@ describe("github client", () => {
     expect(del.sha).toBe("sha123");
     expect(del.branch).toBe("main");
   });
+
+  test("listNotes returns [] when the notes directory is missing (404)", async () => {
+    const octokit = {
+      rest: {
+        repos: {
+          getContent: async () => {
+            throw Object.assign(new Error("Not Found"), { status: 404 });
+          },
+        },
+      },
+    };
+    const gh = createGithubClient(octokit as never, config);
+    expect(await gh.listNotes()).toEqual([]);
+  });
 });
