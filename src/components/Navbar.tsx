@@ -27,8 +27,7 @@ const Navbar = () => {
   const logoText = "Peafield.dev".split("");
 
   const navLinks = [
-    // TODO: re-enable once the notes section is ready
-    // { id: 1, text: "Notes", path: "/notes" },
+    { id: 1, text: "Notes", path: "/notes" },
     { id: 2, text: "Portfolio", path: "/portfolio" },
     { id: 3, text: "Contact", path: "/contact" },
   ];
