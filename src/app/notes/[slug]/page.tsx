@@ -34,7 +34,7 @@ export default async function NotePage({
   } catch {
     notFound();
   }
-  const { Content, meta } = note;
+  const { content, meta } = note;
 
   return (
     <article className="prose dark:prose-invert m-auto p-8 md:py-8 md:px-0">
@@ -47,7 +47,7 @@ export default async function NotePage({
           timeZone: "UTC",
         })}
       </p>
-      <Content />
+      {content}
     </article>
   );
 }

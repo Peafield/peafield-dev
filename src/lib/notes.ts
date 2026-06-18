@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
 import { z } from "zod";
+import { useMDXComponents } from "../../mdx-components";
 
 export const noteFrontmatterSchema = z.object({
   title: z.string().min(1),
@@ -57,6 +59,16 @@ export function getAllNotes(): NoteMeta[] {
 export async function getNote(slug: string) {
   const raw = fs.readFileSync(path.join(NOTES_DIR, `${slug}.mdx`), "utf8");
   const meta = parseFrontmatter(raw, slug);
-  const { default: Content } = await import(`@/content/notes/${slug}.mdx`);
-  return { Content, meta };
+  // Compile the MDX body at runtime rather than via a templated dynamic
+  // import. A statically-analyzed `import(\`@/content/notes/${slug}.mdx\`)`
+  // makes the production build fail when the notes directory is empty (no
+  // candidate modules to build an import map from) — which happens whenever
+  // the CMS deletes the last note. compileMDX has no such build dependency.
+  const { content: body } = matter(raw);
+  const { content } = await compileMDX({
+    source: body,
+    components: useMDXComponents(),
+    options: { parseFrontmatter: false },
+  });
+  return { content, meta };
 }
