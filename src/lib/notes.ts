@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkBreaks from "remark-breaks";
 import { z } from "zod";
 import { useMDXComponents } from "../../mdx-components";
 
@@ -68,7 +69,9 @@ export async function getNote(slug: string) {
   const { content } = await compileMDX({
     source: body,
     components: useMDXComponents(),
-    options: { parseFrontmatter: false },
+    // remark-breaks turns a single newline into a <br>; the preview route
+    // (api/preview) uses the same plugin so what you see while editing matches.
+    options: { parseFrontmatter: false, mdxOptions: { remarkPlugins: [remarkBreaks] } },
   });
   return { content, meta };
 }

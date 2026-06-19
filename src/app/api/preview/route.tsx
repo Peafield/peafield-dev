@@ -1,4 +1,5 @@
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkBreaks from "remark-breaks";
 import { auth } from "@/auth";
 
 // Preview-only component map: plain <a> (no next/link) to avoid needing router
@@ -29,7 +30,9 @@ export async function POST(request: Request) {
     const { content } = await compileMDX({
       source: body ?? "",
       components,
-      options: { parseFrontmatter: false },
+      // remark-breaks turns a single newline into a <br>; must match the
+      // published renderer in lib/notes.ts so the preview stays accurate.
+      options: { parseFrontmatter: false, mdxOptions: { remarkPlugins: [remarkBreaks] } },
     });
     // Dynamic require avoids Next.js RSC webpack bundler blocking
     // react-dom/server at static import analysis time; Route Handlers run
