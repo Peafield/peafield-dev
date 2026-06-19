@@ -100,11 +100,12 @@ pane. No other data path changes.
 
 ## Testing
 
-Add **Vitest** as a dev dependency with a `test` script. Unit-test
-`markdown-commands.ts` covering, per command: empty selection, selection
-present, and toggle-off (where applicable), asserting both the resulting
-`value` and the returned selection range. Heading cycling is tested across the
-full `none -> # -> ## -> ### -> none` loop.
+Use the project's existing **`bun test`** runner (tests are colocated as
+`src/lib/*.test.ts` and import from `bun:test`). No new test dependency is
+added. Unit-test `markdown-commands.ts` covering, per command: empty
+selection, selection present, and toggle-off (where applicable), asserting
+both the resulting `value` and the returned selection range. Heading cycling
+is tested across the full `none -> # -> ## -> ### -> none` loop.
 
 ## Files touched
 
@@ -112,5 +113,5 @@ full `none -> # -> ## -> ### -> none` loop.
 - `src/lib/markdown-commands.test.ts` (new)
 - `src/components/admin/MarkdownToolbar.tsx` (new)
 - `src/components/admin/NoteEditor.tsx` (edit: ref, toolbar, shortcuts, selection restore)
-- `package.json` (add vitest + `test` script)
-- vitest config as needed
+
+No `package.json` or test-config changes — the existing `bun test` setup is reused.
