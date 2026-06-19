@@ -55,9 +55,7 @@ function lineBounds(value: string, start: number, end: number) {
 
 export function cycleHeading(state: EditorState): EditorState {
   const { value, selectionStart } = state;
-  const from = value.lastIndexOf("\n", selectionStart - 1) + 1;
-  const nl = value.indexOf("\n", selectionStart);
-  const to = nl === -1 ? value.length : nl;
+  const { from, to } = lineBounds(value, selectionStart, selectionStart);
   const line = value.slice(from, to);
 
   const match = line.match(/^(#{1,3}) /);
