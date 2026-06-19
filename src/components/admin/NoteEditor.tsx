@@ -1,8 +1,11 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { NoteActionState } from "@/app/admin/actions";
 import type { NoteFormFields } from "@/lib/note-source";
+import MarkdownToolbar from "./MarkdownToolbar";
+import type { EditorState } from "@/lib/markdown-commands";
+import { toggleWrap, insertLink } from "@/lib/markdown-commands";
 
 type Props = {
   action: (prev: NoteActionState, formData: FormData) => Promise<NoteActionState>;
@@ -23,6 +26,39 @@ export default function NoteEditor({ action, initialFields, initialBody }: Props
   const [body, setBody] = useState(initialBody ?? "");
   const [preview, setPreview] = useState("");
   const [state, formAction, pending] = useActionState(action, {});
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const pendingSelection = useRef<{ start: number; end: number } | null>(null);
+
+  const apply = (next: EditorState) => {
+    setBody(next.value);
+    pendingSelection.current = { start: next.selectionStart, end: next.selectionEnd };
+  };
+
+  // Restore the caret/selection after the controlled textarea re-renders.
+  useLayoutEffect(() => {
+    const sel = pendingSelection.current;
+    const el = textareaRef.current;
+    if (sel && el) {
+      el.focus();
+      el.setSelectionRange(sel.start, sel.end);
+      pendingSelection.current = null;
+    }
+  }, [body]);
+
+  const onBodyKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!(e.metaKey || e.ctrlKey)) return;
+    const el = e.currentTarget;
+    const cur: EditorState = {
+      value: el.value,
+      selectionStart: el.selectionStart,
+      selectionEnd: el.selectionEnd,
+    };
+    const key = e.key.toLowerCase();
+    if (key === "b") { e.preventDefault(); apply(toggleWrap(cur, "**")); }
+    else if (key === "i") { e.preventDefault(); apply(toggleWrap(cur, "*")); }
+    else if (key === "k") { e.preventDefault(); apply(insertLink(cur)); }
+  };
 
   useEffect(() => {
     const handle = setTimeout(async () => {
@@ -66,7 +102,10 @@ export default function NoteEditor({ action, initialFields, initialBody }: Props
         </label>
         <label className="flex flex-col gap-1">
           Body (MDX)
-          <textarea name="body" value={body} onChange={(e) => setBody(e.target.value)}
+          <MarkdownToolbar textareaRef={textareaRef} onChange={apply} />
+          <textarea ref={textareaRef} name="body" value={body}
+            onChange={(e) => setBody(e.target.value)}
+            onKeyDown={onBodyKeyDown}
             rows={18}
             className="rounded border border-gray-300 p-2 font-mono dark:bg-zinc-900" />
         </label>
