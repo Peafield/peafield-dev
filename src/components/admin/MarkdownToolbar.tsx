@@ -1,7 +1,7 @@
 // src/components/admin/MarkdownToolbar.tsx
 "use client";
 
-import type { RefObject } from "react";
+import type { ReactNode, RefObject } from "react";
 import {
   LuBold,
   LuItalic,
@@ -29,7 +29,7 @@ type Props = {
 
 type Cmd = (s: EditorState) => EditorState;
 
-const BUTTONS: { label: string; icon: React.ReactNode; run: Cmd }[] = [
+const BUTTONS: { label: string; icon: ReactNode; run: Cmd }[] = [
   { label: "Bold", icon: <LuBold />, run: (s) => toggleWrap(s, "**") },
   { label: "Italic", icon: <LuItalic />, run: (s) => toggleWrap(s, "*") },
   { label: "Heading", icon: <LuHeading />, run: cycleHeading },
